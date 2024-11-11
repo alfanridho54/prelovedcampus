@@ -31,6 +31,8 @@ Route::post('/role/create', [RoleController::class, 'store']);
 
 // user
 Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::post('/user/create', [UserController::class, 'store']);
 
 // transaksi
 Route::get('/transaksi', [TransaksiController::class, 'index']);
@@ -39,3 +41,5 @@ Route::post('/transaksi/create', [TransaksiController::class, 'store']);
 
 // status pembayaran
 Route::get('/status_pembayaran', [StatusPembayaranController::class, 'index']);
+Route::get('/status_pembayaran/{id}', [StatusPembayaranController::class, 'show']);
+Route::post('/status_pembayaran/create', [StatusPembayaranController::class, 'store']);

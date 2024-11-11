@@ -31,6 +31,26 @@ class TransaksiController extends Controller
         return new ResponsResource(true, 'List Data Transaksi', $transaksi);
     }
 
+    public function show($id)
+    {
+        $transaksi = DB::table('transaksi')
+            ->join('user', 'transaksi.user_id', '=', 'user.id')
+            ->join('produk', 'transaksi.produk_id', '=', 'produk.id')
+            ->join('status_pembayaran', 'transaksi.status_pembayaran_id', '=', 'status_pembayaran.id')
+            ->select(
+                'transaksi.jumlah_beli',
+                'transaksi.total_harga',
+                'transaksi.metode_pembayaran',
+                'transaksi.tanggal_transaksi',
+                'user.nama as user_nama',
+                'produk.nama as produk_nama',
+                'status_pembayaran.status_pembayaran as status_pembayaran'
+            )
+            ->where('transaksi.id', $id)
+            ->get();
+        return new ResponsResource(true, 'List Data Transaksi', $transaksi);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -58,25 +78,5 @@ class TransaksiController extends Controller
         ]);
 
         return new ResponsResource(true, 'Data Transaksi Berhasil Ditambahkan', $transaksi);
-    }
-
-    public function show($id)
-    {
-        $transaksi = DB::table('transaksi')
-            ->join('user', 'transaksi.user_id', '=', 'user.id')
-            ->join('produk', 'transaksi.produk_id', '=', 'produk.id')
-            ->join('status_pembayaran', 'transaksi.status_pembayaran_id', '=', 'status_pembayaran.id')
-            ->select(
-                'transaksi.jumlah_beli',
-                'transaksi.total_harga',
-                'transaksi.metode_pembayaran',
-                'transaksi.tanggal_transaksi',
-                'user.nama as user_nama',
-                'produk.nama as produk_nama',
-                'status_pembayaran.status_pembayaran as status_pembayaran'
-            )
-            ->where('transaksi.id', $id)
-            ->get();
-        return new ResponsResource(true, 'List Data Transaksi', $transaksi);
     }
 }
