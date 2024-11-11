@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ResponsResource;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -25,7 +26,8 @@ class UserController extends Controller
         return new ResponsResource(true, 'List Data User', $users);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $user = DB::table('user')
             ->join('role', 'user.role_id', '=', 'role.id')
             ->where('user.id', $id)
@@ -47,7 +49,20 @@ class UserController extends Controller
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:8',
+            'alamat' => 'required',
+            'role_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return new ResponsResource(false, 'Data User Gagal Ditambahkan', $validator->errors());
+        }
+
         $user = User::create([
             'nama' => $request->nama,
             'email' => $request->email,
