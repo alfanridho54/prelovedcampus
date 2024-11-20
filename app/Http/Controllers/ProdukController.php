@@ -70,4 +70,37 @@ class ProdukController extends Controller
 
         return new ResponsResource(true, 'Data Produk Berhasil Ditambahkan', $produk);
     }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'kategori_produk_id' => 'required',
+            'nama' => 'required',
+            'harga' => 'required',
+            'deskripsi' => 'required',
+            'stok' => 'required',
+            'lokasi_gambar' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $produk = Produk::where('id', $id)->update([
+            'kategori_produk_id' => $request->kategori_produk_id,
+            'nama' => $request->nama,
+            'harga' => $request->harga,
+            'deskripsi' => $request->deskripsi,
+            'stok' => $request->stok,
+            'lokasi_gambar' => $request->lokasi_gambar,
+        ]);
+
+        return new ResponsResource(true, 'Data Produk Berhasil Diubah', $produk);
+    }
+
+    public function destroy($id)
+    {
+        $produk = Produk::where('id', $id)->delete();
+        return new ResponsResource(true, 'Data Produk Berhasil Dihapus', $produk);
+    }
 }

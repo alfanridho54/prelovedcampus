@@ -75,4 +75,39 @@ class UserController extends Controller
 
         return new ResponsResource(true, 'Data User Berhasil Ditambahkan', $user);
     }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:8',
+            'alamat' => 'required',
+            'role_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return new ResponsResource(false, 'Data User Gagal Diupdate', $validator->errors());
+        }
+
+        $user = User::findOrFail($id);
+        $user->update([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => $request->password,
+            'foto' => $request->foto,
+            'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
+            'role_id' => $request->role_id,
+        ]);
+
+        return new ResponsResource(true, 'Data User Berhasil Diupdate', $user);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return new ResponsResource(true, 'Data User Berhasil Dihapus', null);
+    }
 }

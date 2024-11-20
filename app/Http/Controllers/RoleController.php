@@ -39,4 +39,27 @@ class RoleController extends Controller
 
         return new ResponsResource(true, 'Data Role Berhasil Ditambahkan', $role);
     }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'role' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $role = Role::where('id', $id)->update([
+            'role' => $request->role,
+        ]);
+
+        return new ResponsResource(true, 'Data Role Berhasil Diubah', $role);
+    }
+
+    public function destroy($id)
+    {
+        $role = Role::where('id', $id)->delete();
+        return new ResponsResource(true, 'Data Role Berhasil Dihapus', $role);
+    }
 }

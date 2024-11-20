@@ -38,4 +38,27 @@ class KategoriProdukController extends Controller
 
         return new ResponsResource(true, 'Data Kategori Produk Berhasil Ditambahkan', $kategori);
     }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'kategori' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $kategori = KategoriProduk::where('id', $id)->update([
+            'kategori' => $request->kategori,
+        ]);
+
+        return new ResponsResource(true, 'Data Kategori Produk Berhasil Diubah', $kategori);
+    }
+
+    public function destroy($id)
+    {
+        $kategori = KategoriProduk::where('id', $id)->delete();
+        return new ResponsResource(true, 'Data Kategori Produk Berhasil Dihapus', $kategori);
+    }
 }
