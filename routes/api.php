@@ -8,12 +8,15 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\StatusPembayaranController;
+use App\Http\Controllers\Api\AuthController;
 
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
 
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
 // kategori produk
 Route::get('/kategori_produk', [KategoriProdukController::class, 'index']);
 Route::get('/kategori_produk/{id}', [KategoriProdukController::class, 'show']);
