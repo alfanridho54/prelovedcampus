@@ -19,6 +19,7 @@ Route::post('/register', [AuthController::class, 'register']);
 
 // kategori produk
 
+Route::get('/kategori_produk', [KategoriProdukController::class, 'index']);
 Route::get('/kategori_produk/{id}', [KategoriProdukController::class, 'show']);
 // produk
 Route::get('/produk', [ProdukController::class, 'index']);
@@ -38,7 +39,6 @@ Route::middleware(['auth:sanctum', 'peran:admin-penjual-customer'])->group(funct
 
 Route::middleware(['auth:sanctum', 'peran:admin'])->group(function () {
     // kategori produk admin
-    Route::get('/kategori_produk', [KategoriProdukController::class, 'index']);
     Route::post('/kategori_produk/create', [KategoriProdukController::class, 'store']);
     Route::put('/kategori_produk/update/{id}', [KategoriProdukController::class, 'update']);
     Route::delete('/kategori_produk/delete/{id}', [KategoriProdukController::class, 'destroy']);
