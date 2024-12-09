@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Testing\Fluent\Concerns\Has;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -26,7 +27,7 @@ class User extends Authenticatable
         'foto',
         'no_hp',
         'alamat',
-        'role_id'
+        'role'
     ];
 
     public $timestamps = false;

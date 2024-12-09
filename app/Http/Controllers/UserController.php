@@ -13,14 +13,13 @@ class UserController extends Controller
     public function index()
     {
         $users = DB::table('user')
-            ->join('role', 'user.role_id', '=', 'role.id')
             ->select(
                 'user.nama',
                 'user.email',
                 'user.foto',
                 'user.no_hp',
                 'user.alamat',
-                'role.role'
+                'user.role'
             )
             ->get();
         return new ResponsResource(true, 'List Data User', $users);
@@ -29,7 +28,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = DB::table('user')
-            ->join('role', 'user.role_id', '=', 'role.id')
             ->where('user.id', $id)
             ->select(
                 'user.nama',
@@ -38,7 +36,7 @@ class UserController extends Controller
                 'user.foto',
                 'user.no_hp',
                 'user.alamat',
-                'role.role'
+                'user.role'
             )
             ->first();
 
