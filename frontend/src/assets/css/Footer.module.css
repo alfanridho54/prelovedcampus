@@ -1,0 +1,29 @@
+footer {
+    background-color: #8B9257;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+
+
+}
+
+/* Media Queriss */
+/* Tablet */
+@media (max-width: 1024px) { 
+    footer {
+         padding: 15px 0;
+        }
+}
+/* Smartphone */
+@media (max-width: 768px) {
+    footer {
+        padding: 20px 0;
+    }
+}
+/* Laptop */
+@media (min-width: 1025px) { 
+    footer {
+         padding: 10px 0;
+    }
+}

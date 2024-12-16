@@ -1,0 +1,81 @@
+/* Container Layout */
+.container {
+    display: flex;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 20%;
+    background-color: #fff;
+    padding: 50px;
+    border-right: 1px solid #e0e0e0;
+    margin-top: 17px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+  }
+  
+  .sidebar li {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .sidebar li:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main Content */
+  .mainContent {
+    width: 70%;
+    padding: 20px;
+    margin-top: 50px;
+    margin-left: 75px;
+    background-color: #8B9257; /* Hijau olive sesuai gambar */
+  }
+  
+  .banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background-color: #8B9257;
+    color: #fff;
+    border-radius: 20px;
+  }
+  
+  /* Teks Banner */
+  .bannerText h1 {
+    font-size: 40px;
+    color: #000;
+    line-height: 1.2;
+  }
+  
+  .bannerText .highlight {
+    color: #FFD700; /* Warna kuning untuk teks 'Students' */
+  }
+  
+  .tryNow {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e0e0e0;
+    color: #000;
+    border: none;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .tryNow:hover {
+    background-color: #d4d4d4;
+  }
+  
+  /* Gambar Banner */
+  .bannerImage img {
+    max-width: 300px;
+    height: auto;
+ 
+  }

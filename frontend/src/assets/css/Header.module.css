@@ -1,0 +1,68 @@
+header {
+    background-color: #8B9257; /* Warna hijau sesuai gambar */
+    padding: 30px 0;
+    height: 35px;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #fff;
+  }
+  
+  .logo a {
+    color: #4F5725;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .navLinks {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+  }
+  
+  .navLinks a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .navLinks a.active {
+    text-decoration: underline;
+  }
+  
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .search input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .icons {
+    display: flex;
+    gap: 5px;
+    font-size: 18px;
+  }
+  
+  .icons span {
+    cursor: pointer;
+  }
+
+  hr {
+    margin-top: 5px;
+  }
