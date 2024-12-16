@@ -1,27 +1,29 @@
-import './App.css';
-import Home from './component/Home';
-import About from './component/About';
-import Header from './component/Header';
-import Footer from './component/Footer';
-import Produk from './component/Produk';
-
+import LayoutAdmin from './layout/admin/index.jsx'
+import Dashboard from './pages/admin/Dashboard.jsx'
+import { Route, Routes } from 'react-router-dom'
+import UserTable from './pages/admin/UserTable.jsx'
+import Kesatuan from './pages/admin/kesatuan/Kesatuan.jsx'
+import Personel from './pages/admin/personel/Personel.jsx'
+import Produk from './pages/admin/produk/Produk.jsx'
+import AddProduk from './pages/admin/produk/AddProduk.jsx'
+import EditProduk from './pages/admin/produk/UpdateProduk.jsx'
 
 function App() {
   return (
-    <>
-    <div>
-      Hallo ini tampilan website pertama kita
-    </div>
-      <div>
-        <Header />
-        <Home />
-        <About />
-        <Produk />
-        <Footer />
-      </div>
-      
-    </>
-  );
+    
+    <LayoutAdmin>
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/produk" element={<Produk />}></Route>
+      <Route path="/produk/create" element={<AddProduk />}></Route>
+      <Route path='/produk/update/:id' element={<EditProduk />}></Route>
+      <Route path='/user' element={<UserTable />}></Route>
+      <Route path='/kesatuan' element={<Kesatuan />}></Route>
+      <Route path='/personel' element={<Personel />}></Route>
+    </Routes>
+    </LayoutAdmin>
+
+  )
 }
 
-export default App;
+export default App
