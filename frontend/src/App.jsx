@@ -1,27 +1,26 @@
-// import './App.css';
-import './assets/css/global.css'
-import Home from './component/Home';
-import About from './component/About';
-import Header from './component/Header';
-import Footer from './component/Footer';
-import Produk from './component/Produk';
-import Service from './component/Service';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import './assets/css/global.css';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import AllProduk from './components/ProdukList';
+import PesanProduk from './components/PesanProduk';
+import Home from './pages/Home';
+import SignUp from './pages/SignUp';
 
 
 function App() {
   return (
-    <>
-      <div>
-        <Header />
-        <Home />
-        <Service />
-        {/* <About /> */}
-
-        <Footer />
-      
-      </div>
-      
-    </>
+    <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path='/SignUp' element={<SignUp/>}/>
+          <Route path="/all-products" element={<AllProduk />} />
+          <Route path="/PesanProduk/:id" element={<PesanProduk />} />
+        </Routes>
+    </Router>
   );
 }
 
