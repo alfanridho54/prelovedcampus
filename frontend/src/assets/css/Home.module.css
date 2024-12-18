@@ -51,16 +51,17 @@
     font-size: 40px;
     color: #000;
     line-height: 1.2;
+    
   }
   
   .bannerText .highlight {
-    color: #FFD700; /* Warna kuning untuk teks 'Students' */
+    color: #FFD700; 
   }
   
   .tryNow {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #e0e0e0;
+    background-color: #ffffff;
     color: #000;
     border: none;
     width: 100px;

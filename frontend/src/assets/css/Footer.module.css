@@ -1,32 +1,100 @@
-footer {
+/* Footer */
+.footer {
     background-color: #8B9257;
+<<<<<<< HEAD
+=======
+    color: #fff;
+    padding: 2rem;
+>>>>>>> 5663a0252bc0ee814dbcc4d4dea51fe6f4f7de0d
     text-align: center;
-    padding: 10px 0;
     width: 100%;
+<<<<<<< HEAD
  
 }
 
 footer p {
     color: white;
  
+=======
+>>>>>>> 5663a0252bc0ee814dbcc4d4dea51fe6f4f7de0d
 }
 
-/* Media Queriss */
-/* Tablet */
-@media (max-width: 1024px) { 
-    footer {
-         padding: 15px 0;
-        }
+/* Container untuk Footer */
+.footerContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
-/* Smartphone */
-@media (max-width: 768px) {
-    footer {
-        padding: 20px 0;
+
+.footerSection {
+    flex: 1 1 20%; /* Membuat setiap section fleksibel dengan minimal 20% lebar */
+    margin-bottom: 1.5rem;
+}
+
+.footerSection h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footerSection ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footerSection ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footerSection ul li a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.footerSection ul li a:hover {
+    color: #4F5725;
+}
+
+/* Social Icons */
+.socialIcons {
+    display: flex;
+    gap: 1rem;
+}
+
+.socialIcon {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.socialIcon:hover {
+    color: #4F5725;
+}
+
+/* Footer Bottom */
+.footerBottom {
+    background-color: #6B7A3A;
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+.footerBottom p {
+    margin: 0;
+    color: black;
+}
+
+/* Responsiveness: */
+@media (max-width: 1024px) {
+    .footerContent {
+        flex-direction: column;
+        align-items: center;
     }
-}
-/* Laptop */
-@media (min-width: 1025px) { 
-    footer {
-         padding: 10px 0;
+
+    .footerSection {
+        flex: 1 1 100%; 
+        text-align: center;
     }
 }
