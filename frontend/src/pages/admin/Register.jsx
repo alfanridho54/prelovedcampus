@@ -5,10 +5,10 @@ import styles from '../../assets/css/SignUp.module.css';
 
 function Register() {
   const [formData, setFormData] = useState({
-    username: '',
+    nama: '',
     email: '',
     password: '',
-    confirmPassword: '',
+
   });
 
   const [error, setError] = useState('');
@@ -30,7 +30,7 @@ function Register() {
 
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/register', {
-        username: formData.username,
+        nama: formData.nama,
         email: formData.email,
         password: formData.password,
       });
@@ -78,13 +78,13 @@ function Register() {
 
         <form className={styles.signUpForm} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="nama">Nama</label>
             <input
               type="text"
-              id="username"
-              name="username"
-              placeholder="Enter your username"
-              value={formData.username}
+              id="nama"
+              name="nama"
+              placeholder="Enter your name"
+              value={formData.nama}
               onChange={handleChange}
               required
             />
@@ -138,3 +138,4 @@ function Register() {
 }
 
 export default Register;
+
