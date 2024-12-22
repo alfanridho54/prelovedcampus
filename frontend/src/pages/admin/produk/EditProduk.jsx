@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function AddProduk() {
+function EditProduk() {
   const [nama, setNama] = useState("");
   const [harga, setHarga] = useState("");
   const [stok, setStok] = useState("");
@@ -11,11 +11,11 @@ function AddProduk() {
   const [kategoriList, setKategoriList] = useState([]);
   const [lokasi_gambar, setLokasiGambar] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchKategori = async () => {
-     
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/kategori-produk", {
           headers: {
@@ -27,15 +27,35 @@ function AddProduk() {
         console.error("Failed to fetch categories:", error);
       }
     };
+
+    const fetchProduk = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/produk/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const { nama, harga, stok, deskripsi, kategori_produk_id, lokasi_gambar } = response.data.data;
+        setNama(nama);
+        setHarga(harga);
+        setStok(stok);
+        setDeskripsi(deskripsi);
+        setKategori(kategori_produk_id);
+        setLokasiGambar(lokasi_gambar);
+      } catch (error) {
+        console.error("Failed to fetch product details:", error);
+      }
+    };
+
     fetchKategori();
-  }, []);
+    fetchProduk();
+  }, [id, token]);
 
   const handleSubmit = async (e) => {
-    console.log(token);
     e.preventDefault();
     try {
-      await axios.post(
-        "http://127.0.0.1:8000/api/produk/create",
+      await axios.put(
+        `http://127.0.0.1:8000/api/produk/update/${id}`,
         {
           nama,
           harga,
@@ -50,16 +70,16 @@ function AddProduk() {
           },
         }
       );
-      alert("Produk berhasil ditambahkan!");
+      alert("Produk berhasil diupdate!");
       navigate("/produk");
     } catch (error) {
-      alert("Gagal menambahkan produk");
+      alert("Gagal mengupdate produk");
     }
   };
 
   return (
     <div className="container">
-      <h1>Tambah Produk</h1>
+      <h1>Edit Produk</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Nama Produk</label>
@@ -130,12 +150,12 @@ function AddProduk() {
           </select>
         </div>
         <button type="submit" className="btn btn-primary">
-          Tambah
+          Update
         </button>
       </form>
     </div>
   );
 }
 
-export default AddProduk;
+export default EditProduk;
 

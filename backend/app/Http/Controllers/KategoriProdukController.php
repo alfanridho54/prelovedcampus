@@ -18,7 +18,7 @@ class KategoriProdukController extends Controller
 
     public function show($id)
     {
-        $kategori = DB::table('kategori_produk')->where('id', $id)->get();
+        $kategori = DB::table('kategori_produk')->where('id', $id)->first();
         return new ResponsResource(true, 'List Data Kategori Produk', $kategori);
     }
 

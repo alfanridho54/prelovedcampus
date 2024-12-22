@@ -3,117 +3,59 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\ResponsResource;
 use App\Models\Transaksi;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-
+use App\Models\User;
+use App\Models\Produk;
 
 class TransaksiController extends Controller
 {
+    // Menampilkan daftar transaksi
     public function index()
     {
-        $transaksi = DB::table('transaksi')
-            ->join('user', 'transaksi.user_id', '=', 'user.id')
-            ->join('produk', 'transaksi.produk_id', '=', 'produk.id')
-            ->join('status_pembayaran', 'transaksi.status_pembayaran_id', '=', 'status_pembayaran.id')
-            ->select(
-                'transaksi.jumlah_beli',
-                'transaksi.total_harga',
-                'transaksi.metode_pembayaran',
-                'transaksi.tanggal_transaksi',
-                'user.nama as user_nama',
-                'produk.nama as produk_nama',
-                'status_pembayaran.status_pembayaran as status_pembayaran'
-            )
-            ->get();
-
-        return new ResponsResource(true, 'List Data Transaksi', $transaksi);
+        $transaksi = Transaksi::with(['user', 'produk', 'statusPembayaran'])->get();
+        return response()->json($transaksi);
     }
 
-    public function show($id)
-    {
-        $transaksi = DB::table('transaksi')
-            ->join('user', 'transaksi.user_id', '=', 'user.id')
-            ->join('produk', 'transaksi.produk_id', '=', 'produk.id')
-            ->join('status_pembayaran', 'transaksi.status_pembayaran_id', '=', 'status_pembayaran.id')
-            ->select(
-                'transaksi.jumlah_beli',
-                'transaksi.total_harga',
-                'transaksi.metode_pembayaran',
-                'transaksi.tanggal_transaksi',
-                'user.nama as user_nama',
-                'produk.nama as produk_nama',
-                'status_pembayaran.status_pembayaran as status_pembayaran'
-            )
-            ->where('transaksi.id', $id)
-            ->get();
-        return new ResponsResource(true, 'List Data Transaksi', $transaksi);
-    }
-
+    // Menambah transaksi baru
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-            'produk_id' => 'required',
-            'jumlah_beli' => 'required',
-            'total_harga' => 'required',
-            'metode_pembayaran' => 'required',
-            'tanggal_transaksi' => 'required',
-            'status_pembayaran_id' => 'required',
+        $validatedData = $request->validate([
+            'user_id' => 'required|exists:user,id',
+            'produk_id' => 'required|exists:produk,id',
+            'jumlah_beli' => 'required|integer|min:1',
+            'total_harga' => 'required|numeric',
+            'metode_pembayaran' => 'required|string|max:45',
+            'status_pembayaran_id' => 'required|exists:status_pembayaran,id',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+        $produk = Produk::find($validatedData['produk_id']);
+        if ($produk->stok < $validatedData['jumlah_beli']) {
+            return response()->json(['message' => 'Stok tidak mencukupi'], 400);
         }
 
-        $transaksi = Transaksi::create([
-            'user_id' => $request->user_id,
-            'produk_id' => $request->produk_id,
-            'jumlah_beli' => $request->jumlah_beli,
-            'total_harga' => $request->total_harga,
-            'metode_pembayaran' => $request->metode_pembayaran,
-            'tanggal_transaksi' => $request->tanggal_transaksi,
-            'status_pembayaran_id' => $request->status_pembayaran_id,
-        ]);
+        // Kurangi stok produk
+        $produk->stok -= $validatedData['jumlah_beli'];
+        $produk->save();
 
-        return new ResponsResource(true, 'Data Transaksi Berhasil Ditambahkan', $transaksi);
+        $transaksi = Transaksi::create($validatedData);
+        return response()->json(['message' => 'Transaksi berhasil ditambahkan', 'data' => $transaksi], 201);
     }
 
-    public function update(Request $request, $id)
+    // Mengupdate status pembayaran transaksi
+    public function updateStatusPembayaran(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-            'produk_id' => 'required',
-            'jumlah_beli' => 'required',
-            'total_harga' => 'required',
-            'metode_pembayaran' => 'required',
-            'tanggal_transaksi' => 'required',
-            'status_pembayaran_id' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+        $transaksi = Transaksi::find($id);
+        if (!$transaksi) {
+            return response()->json(['message' => 'Transaksi tidak ditemukan'], 404);
         }
 
-        $transaksi = Transaksi::findOrFail($id);
-        $transaksi->update([
-            'user_id' => $request->user_id,
-            'produk_id' => $request->produk_id,
-            'jumlah_beli' => $request->jumlah_beli,
-            'total_harga' => $request->total_harga,
-            'metode_pembayaran' => $request->metode_pembayaran,
-            'tanggal_transaksi' => $request->tanggal_transaksi,
-            'status_pembayaran_id' => $request->status_pembayaran_id,
+        $validatedData = $request->validate([
+            'status_pembayaran_id' => 'required|exists:status_pembayaran,id',
         ]);
 
-        return new ResponsResource(true, 'Data Transaksi Berhasil Diupdate', $transaksi);
-    }
+        $transaksi->status_pembayaran_id = $validatedData['status_pembayaran_id'];
+        $transaksi->save();
 
-    public function destroy($id)
-    {
-        $transaksi = Transaksi::findOrFail($id);
-        $transaksi->delete();
-        return new ResponsResource(true, 'Data Transaksi Berhasil Dihapus', null);
+        return response()->json(['message' => 'Status pembayaran berhasil diperbarui', 'data' => $transaksi], 200);
     }
 }

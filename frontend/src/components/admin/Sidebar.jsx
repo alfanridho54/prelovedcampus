@@ -1,27 +1,28 @@
-function Sidebar() {
-    return (
-<div id="layoutSidenav_nav">
-  <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-    <div className="sb-sidenav-menu">
+function Sidebar(){
+    return(
+        <div id="layoutSidenav_nav" >
+  <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"
+  >
+    <div className="sb-sidenav-menu" >
       <div className="nav">
         <div className="sb-sidenav-menu-heading">Core</div>
-        <a className="nav-link" href="index.html">
+        <a className="nav-link" href="/">
           <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt" /></div>
           Dashboard
         </a>
         <div className="sb-sidenav-menu-heading">Interface</div>
         <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
           <div className="sb-nav-link-icon"><i className="fas fa-columns" /></div>
-          Layouts
+          Master Data
           <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down" /></div>
         </a>
         <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
           <nav className="sb-sidenav-menu-nested nav">
-            <a className="nav-link" href="layout-static.html">Static Navigation</a>
-            <a className="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-            <a className="nav-link" href="/agama">Agama</a>
-            <a className="nav-link" href="/kesatuan">Kesatuan</a>
-            <a className="nav-link" href="/personel">Personel</a>
+            <a className="nav-link" href="/produk">Produk</a>
+            <a className="nav-link" href="/kategori">Kategori Produk</a>
+            <a className="nav-link" href="/transaksi">Transaksi</a>
+            <a className="nav-link" href="/tugas">Tugas</a>
+
           </nav>
         </div>
         <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -73,7 +74,7 @@ function Sidebar() {
   </nav>
 </div>
 
-  );
+    )
 }
 
-export default Sidebar
+export default Sidebar;

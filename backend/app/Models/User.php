@@ -41,6 +41,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'user_id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
