@@ -1,26 +1,26 @@
-import { Fragment } from 'react'
-import Header from '../../components/admin/Header'
-import Sidebar from '../../components/admin/Sidebar'
-import Footer from '../../components/admin/Footer'
-import Protected from '../../pages/admin/ProtectedRoute'
+import { Fragment } from 'react';
+import Header from '../../components/admin/Header';
+import Sidebar from '../../components/admin/Sidebar';
+import Footer from '../../components/admin/Footer';
+import Protected from '../../pages/admin/ProtectedRoute';
 
-function Layout({children}){
-    return(
-        <Fragment>
-        <Header />
-        <div id="layoutSidenav" style={{width: '215vh'}} >
-            <Sidebar />
-            <div id="layoutSidenav_content" style={{height: '100px'}}>
-                <main>
-                    <Protected>
-
-                    {children}
-                    </Protected>
-                </main>
-                <Footer />
-            </div>
+function Layout({ children }) {
+  return (
+    <Fragment>
+      <div id="wrapper">
+        <Sidebar />
+        <div id="content-wrapper" className="d-flex flex-column">
+          <div id="content" >
+            <Header />
+            <Protected>
+              {children}
+            </Protected>
+          </div>
+          <Footer />
         </div>
+      </div>
     </Fragment>
-    )
+  );
 }
-export default Layout
+
+export default Layout;

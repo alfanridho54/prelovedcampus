@@ -21,10 +21,20 @@ function Login() {
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
       if (response.data.success) {
+        // Menyimpan token dan role ke localStorage
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('role', response.data.role);
+        console.log('Role:', response.data.role);
+
+        // Mengarahkan berdasarkan role
+        const userRole = response.data.role; // Pastikan role ada di response
+        if (userRole === 'admin') {
+          navigate('/dashboard'); // Arahkan admin ke dashboard
+        } else if (userRole === 'penjual' || userRole === 'customer' || userRole === 'guest') {
+          navigate('/home'); // Arahkan penjual atau customer ke home
+        }
+
         alert('Login successful!');
-        navigate('/dashboard');
       } else {
         setError(response.data.message || 'Login failed');
       }

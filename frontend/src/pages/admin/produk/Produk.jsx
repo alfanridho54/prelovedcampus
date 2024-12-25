@@ -44,7 +44,9 @@ function Produk() {
   // Inisialisasi DataTables
   useEffect(() => {
     if (!loading && !error && produk.length > 0) {
-      const table = $(tableRef.current).DataTable();
+      const table = $(tableRef.current).DataTable({
+        responsive: true, // Untuk membuat DataTable responsif
+      });
       return () => {
         table.destroy();
       };
@@ -109,43 +111,45 @@ function Produk() {
           ) : error ? (
             <p className="text-danger">{error}</p>
           ) : (
-            <table ref={tableRef} className="table">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>Harga</th>
-                  <th>Stok</th>
-                  <th>Kategori</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                {produk.map((item, index) => (
-                  <tr key={item.id}>
-                    <td>{index + 1}</td>
-                    <td>{item.nama}</td>
-                    <td>{item.harga}</td>
-                    <td>{item.stok}</td>
-                    <td>{item.kategori}</td>
-                    <td>
-                      <button
-                        className="btn btn-warning btn-sm me-2"
-                        onClick={() => navigate(`/produk/edit/${item.id}`)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDelete(item.id)}
-                      >
-                        Hapus
-                      </button>
-                    </td>
+            <div className="table-responsive"> {/* Tambahkan class table-responsive */}
+              <table ref={tableRef} className="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Kategori</th>
+                    <th>Aksi</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {produk.map((item, index) => (
+                    <tr key={item.id}>
+                      <td>{index + 1}</td>
+                      <td>{item.nama}</td>
+                      <td>{item.harga}</td>
+                      <td>{item.stok}</td>
+                      <td>{item.kategori}</td>
+                      <td>
+                        <button
+                          className="btn btn-warning btn-sm me-2"
+                          onClick={() => navigate(`/produk/edit/${item.id}`)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          Hapus
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       </div>

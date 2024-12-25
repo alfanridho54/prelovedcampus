@@ -1,38 +1,55 @@
-function Header() {
-    const handleLogout = () => {
-        // Logic for handling logout, e.g., clearing localStorage and redirecting
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
-        window.location.href = '/login';
-    };
+import React from 'react';
 
-    return (
-        <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            {/* Navbar Brand */}
-            <a className="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
-            {/* Sidebar Toggle */}
-            <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i className="fas fa-bars" /></button>
-            {/* Navbar Search */}
-            <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div className="input-group">
-                    <input className="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button className="btn btn-primary" id="btnNavbarSearch" type="button"><i className="fas fa-search" /></button>
-                </div>
-            </form>
-            {/* Navbar */}
-            <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fas fa-user fa-fw" /></a>
-                    <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a className="dropdown-item" href="#!">Settings</a></li>
-                        <li><a className="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr className="dropdown-divider" /></li>
-                        <li><a className="dropdown-item" href="#!" onClick={handleLogout}>Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    );
-}
+const Header = () => {
+  return (
+    <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+      <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
+        <i className="fa fa-bars"></i>
+      </button>
+      <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control bg-light border-0 small"
+            placeholder="Search for..."
+            aria-label="Search"
+            aria-describedby="basic-addon2"
+          />
+          <div className="input-group-append">
+            <button className="btn btn-primary" type="button">
+              <i className="fas fa-search fa-sm"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item dropdown no-arrow d-sm-none">
+          <a className="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i className="fas fa-search fa-fw"></i>
+          </a>
+        </li>
+        <li className="nav-item dropdown no-arrow mx-1">
+          <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i className="fas fa-bell fa-fw"></i>
+            <span className="badge badge-danger badge-counter">3+</span>
+          </a>
+        </li>
+        <li className="nav-item dropdown no-arrow mx-1">
+          <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i className="fas fa-envelope fa-fw"></i>
+            <span className="badge badge-danger badge-counter">7</span>
+          </a>
+        </li>
+        <div className="topbar-divider d-none d-sm-block"></div>
+        <li className="nav-item dropdown no-arrow">
+          <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span className="mr-2 d-none d-lg-inline text-gray-600 small">admin</span>
+            <img className="img-profile rounded-circle" src="img/undraw_profile.svg" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
 export default Header;
