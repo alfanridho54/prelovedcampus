@@ -1,0 +1,76 @@
+/* Container untuk fitur */
+.featureContainer {
+    display: flex; 
+    justify-content: flex-end;
+    align-items: center; 
+    gap: 20px; 
+    padding: 60px;
+    flex-wrap: nowrap; 
+    
+}
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+ .header .dot {
+    width: 1rem;
+    height: 1rem;
+    background-color: #4F5725; /* Warna hijau tua */
+    border-radius: 50%;
+    margin-top: 80px;
+    margin-left: 3rem; 
+}
+
+.headerTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #4F5725;
+    margin-top: 80px;
+    margin-left: 0.4rem; 
+}
+
+.mainTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 80px;
+    margin-top: 1rem; 
+    margin-left: 3rem; 
+    color: #000000;
+}
+
+/* Gaya untuk setiap item */
+.featureItem {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek hover */
+.featureItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ikon styling */
+.icon {
+    font-size: 2.5rem;
+    color: black;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.icon:hover {
+    color:  #4F5725;
+}
+
+.featureText {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+

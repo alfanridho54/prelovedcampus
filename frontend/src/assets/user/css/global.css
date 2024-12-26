@@ -1,0 +1,30 @@
+/* CSS Global */
+
+.cart-page header {
+  background-color: #8B9257;
+}
+
+.cart-page .container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Styles only for pages with the 'cart-page' class */
+.cart-page .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #fff;
+}
+
+/* Customize elements for 'cart-page' only */
+.cart-page .button {
+  background-color: #6B7A3A;
+  color: white;
+  font-weight: bold;
+}
