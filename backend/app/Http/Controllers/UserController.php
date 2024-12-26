@@ -26,26 +26,17 @@ class UserController extends Controller
     }
 
     public function show($id)
-    {
-        $user = DB::table('user')
-            ->where('user.id', $id)
-            ->select(
-                'user.nama',
-                'user.email',
-                'user.password',
-                'user.foto',
-                'user.no_hp',
-                'user.alamat',
-                'user.role'
-            )
-            ->first();
+{
+    $user = User::find($id); // Gunakan model User langsung
 
-        if ($user) {
-            return new ResponsResource(true, 'Detail Data User', $user);
-        } else {
-            return new ResponsResource(false, 'User tidak ada', null);
-        }
+    if ($user) {
+        $user->makeHidden(['password']); // Hilangkan password dari respons
+        return new ResponsResource(true, 'Detail Data User', $user);
+    } else {
+        return new ResponsResource(false, 'User tidak ada', null);
     }
+}
+
 
     public function store(Request $request)
     {

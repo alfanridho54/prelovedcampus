@@ -56,6 +56,34 @@ function Kategori() {
     fetchKategori();
   }, []);
 
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
+
+    Swal.fire({
+      title: "Anda yakin?",
+      text: "Data yang dihapus tidak bisa dikembalikan!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, hapus!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.delete(`http://127.0.0.1:8000/api/kategori-produk/delete/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          Swal.fire("Berhasil!", "Kategori berhasil dihapus.", "success");
+          fetchKategori(); // Refresh data setelah delete
+        } catch (error) {
+          Swal.fire("Gagal!", "Terjadi kesalahan saat menghapus kategori.", "error");
+        }
+      }
+    });
+  };
+
   return (
     <div className="container-fluid px-4">
       <h1 className="mt-4">Daftar Kategori</h1>
@@ -102,29 +130,7 @@ function Kategori() {
                       </button>
                       <button
                         className="btn btn-danger btn-sm"
-                        onClick={() => Swal.fire({
-                          title: "Anda yakin?",
-                          text: "Data yang dihapus tidak bisa dikembalikan!",
-                          icon: "warning",
-                          showCancelButton: true,
-                          confirmButtonColor: "#3085d6",
-                          cancelButtonColor: "#d33",
-                          confirmButtonText: "Ya, hapus!",
-                        }).then(async (result) => {
-                          if (result.isConfirmed) {
-                            try {
-                              await axios.delete(`http://127.0.0.1:8000/api/kategori/delete/${item.id}`, {
-                                headers: {
-                                  Authorization: `Bearer ${token}`,
-                                },
-                              });
-                              Swal.fire("Berhasil!", "Kategori berhasil dihapus.", "success");
-                              fetchKategori(); // Refresh data setelah delete
-                            } catch (error) {
-                              Swal.fire("Gagal!", "Terjadi kesalahan saat menghapus kategori.", "error");
-                            }
-                          }
-                        })}
+                        onClick={() => handleDelete(item.id)}
                       >
                         Hapus
                       </button>
@@ -141,4 +147,5 @@ function Kategori() {
 }
 
 export default Kategori;
+
 

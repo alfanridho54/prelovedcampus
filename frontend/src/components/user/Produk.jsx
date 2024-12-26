@@ -46,7 +46,7 @@ export default function ProdukList() {
         ) : (
           produk.map((product) => (
             <div key={product.id} className={styles.card}>
-              <Link to={`/PesanProduk/${product.id}`}>
+              <Link to={`/detail-produk/${product.id}`}>
                 <img
                   src={product.img}
                   alt={product.name}

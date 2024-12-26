@@ -35,7 +35,8 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'token' => $token,
-            'role' => $user->role,  // Pastikan role juga dikirim jika diperlukan
+            'user' => $user->only('id', 'name', 'email'),
+            'role' => $user->role,
         ]);
     }
 

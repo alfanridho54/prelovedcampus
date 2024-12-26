@@ -1,46 +1,13 @@
 import { Link } from 'react-router-dom';
 import styles from '../../assets/user/css/About.module.css';
+import Header from '../../components/user/Header';
+import Footer from '../../components/user/Footer';
 
 export default function About() {
   return (
     <>
-      {/* Header */}
-      <header>
-        <nav className={styles.navbar}>
-          <div className={styles.logo}>
-            <Link to="/">PRELOVED</Link>
-          </div>
-          <ul className={styles.navLinks}>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li>
-              <Link to="/login">Login</Link> / 
-              <Link to="/register">Sign Up</Link>
-            </li>
-          </ul>
-          <div className={styles.container}>
-            {/* Search Bar */}
-            <div className={styles.searchBar}>
-              <input 
-                type="text" 
-                placeholder="What are you looking for?" 
-                aria-label="Search" 
-              />
-              <i className="fas fa-search" aria-hidden="true"></i>
-            </div>
-            {/* Icons */}
-            <div className={styles.icons}>
-              <i className="far fa-heart" title="Favorite" aria-hidden="true"></i>
-              <Link to="/cart">
-                <i className="fas fa-shopping-cart" title="Cart" aria-hidden="true"></i>
-              </Link>
-            </div>
-          </div>
-        </nav>
-        <hr />
-      </header>
-
+      
+      <Header />
       {/* Konten About */}
       <main className={styles.aboutContent} role="main">
         <h1>About Us</h1>
@@ -63,6 +30,8 @@ export default function About() {
           We’re here to help!
         </p>
       </main>
+
+      <Footer />
     </>
   );
 }

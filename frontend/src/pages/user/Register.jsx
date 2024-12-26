@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../../assets/css/SignUp.module.css';
+import Header from '../../components/user/Header';
+import Footer from '../../components/user/Footer';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -47,32 +49,7 @@ function Register() {
 
   return (
     <>
-      <header>
-        <nav className={styles.navbar}>
-          <div className={styles.logo}>
-            <Link to="#">PRELOVED</Link>
-          </div>
-          <ul className={styles.navLinks}>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/login">Login</Link>/<Link to="/register">Sign Up</Link></li>
-          </ul>
-          <div className={styles.container}>
-            <div className={styles.searchBar}>
-              <input type="text" placeholder="What are you looking for?" />
-              <i className="fas fa-search"></i>
-            </div>
-            <div className={styles.icons}>
-              <i className="far fa-heart" title="Favorite"></i>
-              <Link to="/cart">
-                    <i className="fas fa-shopping-cart" title="Cart" aria-hidden="true"></i>
-                </Link>
-            </div>
-          </div>
-        </nav>
-        <hr />
-      </header>
+      <Header />
 
       <main className={styles.signUpContent}>
         <h1>Create an Account</h1>
@@ -135,6 +112,8 @@ function Register() {
           Already have an account? <Link to="/login">Sign In</Link>
         </p>
       </main>
+
+      <Footer />
     </>
   );
 }

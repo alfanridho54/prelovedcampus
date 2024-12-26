@@ -5,19 +5,29 @@ import { useNavigate } from "react-router-dom";
 function AddKategori() {
   const [kategori, setKategori] = useState("");
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://127.0.0.1:8000/api/kategori-produk/create", {
-        kategori,
-      });
+      await axios.post(
+        "http://127.0.0.1:8000/api/kategori-produk/create",
+        {
+          kategori,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       alert("Kategori berhasil ditambahkan!");
       navigate("/kategori");
     } catch (error) {
       alert("Gagal menambahkan kategori");
     }
   };
+  
 
   return (
     <div className="container">

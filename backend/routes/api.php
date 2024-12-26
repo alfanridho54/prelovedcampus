@@ -7,6 +7,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\CartController;
 
 // Rute otentikasi
 Route::post('/login', [AuthController::class, 'login']);
@@ -35,17 +36,28 @@ Route::middleware(['auth:sanctum', 'peran:admin-penjual-customer'])->group(funct
 });
 
 // Rute pengguna (user)
-Route::middleware(['auth:sanctum', 'peran:admin'])->group(function () {
+
     Route::get('/user', [UserController::class, 'index']);
     Route::get('/user/{id}', [UserController::class, 'show']);
+
+Route::middleware(['auth:sanctum', 'peran:admin'])->group(function () {
     Route::post('/user/create', [UserController::class, 'store']);
     Route::put('/user/update/{id}', [UserController::class, 'update']);
     Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
-});
 
-// Rute kategori produk untuk admin
-Route::middleware(['auth:sanctum', 'peran:admin'])->group(function () {
+    // Rute kategori produk
     Route::post('/kategori-produk/create', [KategoriProdukController::class, 'store']);
     Route::put('/kategori-produk/update/{id}', [KategoriProdukController::class, 'update']);
     Route::delete('/kategori-produk/delete/{id}', [KategoriProdukController::class, 'destroy']);
+});
+
+
+// cart
+Route::middleware(['auth:sanctum', 'peran:admin-penjual-customer'])->group(function () {
+    Route::prefix('cart')->group(function () {
+        Route::get('{userId}', [CartController::class, 'index']);
+        Route::post('/', [CartController::class, 'store']);
+        Route::delete('{id}', [CartController::class, 'destroy']);
+        Route::post('/checkout', [CartController::class, 'checkout']);
+    });
 });
