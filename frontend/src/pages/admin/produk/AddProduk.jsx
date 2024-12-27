@@ -31,31 +31,32 @@ function AddProduk() {
   }, []);
 
   const handleSubmit = async (e) => {
-    console.log(token);
     e.preventDefault();
+  
+    const formData = new FormData();
+    formData.append("nama", nama);
+    formData.append("harga", harga);
+    formData.append("stok", stok);
+    formData.append("deskripsi", deskripsi);
+    formData.append("kategori_produk_id", kategori);
+    formData.append("lokasi_gambar", lokasi_gambar); // Tambahkan file gambar
+  
     try {
-      await axios.post(
-        "http://127.0.0.1:8000/api/produk/create",
-        {
-          nama,
-          harga,
-          stok,
-          deskripsi,
-          kategori_produk_id: kategori,
-          lokasi_gambar,
+      await axios.post("http://127.0.0.1:8000/api/produk/create", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      });
       alert("Produk berhasil ditambahkan!");
       navigate("/produk");
     } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
       alert("Gagal menambahkan produk");
     }
+    
   };
+  
 
   return (
     <div className="container">
@@ -101,15 +102,15 @@ function AddProduk() {
           ></textarea>
         </div>
         <div className="mb-3">
-          <label>Lokasi Gambar</label>
-          <input
-            type="text"
-            className="form-control"
-            value={lokasi_gambar}
-            onChange={(e) => setLokasiGambar(e.target.value)}
-            required
-          />
-        </div>
+  <label>Gambar Produk</label>
+  <input
+    type="file"
+    className="form-control"
+    onChange={(e) => setLokasiGambar(e.target.files[0])}
+    required
+  />
+</div>
+
         <div className="mb-3">
           <label htmlFor="kategori" className="form-label">
             Kategori

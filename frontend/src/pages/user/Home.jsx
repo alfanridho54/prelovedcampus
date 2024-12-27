@@ -1,9 +1,8 @@
 import Header from "../../components/user/Header";
 import Home from "../../components/user/Home";
-import Category from "../../components/user/Category";
-import Produk from "../../components/user/Produk";
 import Service from "../../components/user/Service";
 import Footer from "../../components/user/Footer";
+import ProdukPage from "../../components/user/ProdukPage";
 
 
 
@@ -12,8 +11,7 @@ export default function Homepage() {
       <div>
          <Header/>
          <Home />
-         <Category />
-         <Produk />
+         <ProdukPage />
          <Service />
          <Footer />
       </div>

@@ -154,6 +154,7 @@ header {
   border-radius: 5px;
   font-size: 14px;
   background-color: #fff;
+  color: #000;
 }
 
 .formGroup input:focus {

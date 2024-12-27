@@ -89,32 +89,33 @@ export default function Cart() {
                   </tr>
                 </thead>
                 <tbody>
-                  {cartItems.map((item) => (
-                    <tr key={item.id}>
-                      <td className="py-2 px-4 border-b flex items-center">
-                        <img
-                          src={item.image || "https://via.placeholder.com/100"}
-                          alt={item.nama || "Unknown"}
-                          className="w-16 h-16 mr-4"
-                        />
-                        <span>{item.nama || "No Name"}</span>
-                      </td>
-                      <td className="py-2 px-4 border-b">Rp.{item.harga.toLocaleString()}</td>
-                      <td className="py-2 px-4 border-b">{item.jumlah}</td>
-                      <td className="py-2 px-4 border-b">
-                        Rp.{(item.harga * item.jumlah).toLocaleString()}
-                      </td>
-                      <td className="py-2 px-4 border-b">
-                        <button
-                          onClick={() => handleRemove(item.id)}
-                          className="bg-red-500 text-white px-2 py-1 rounded"
-                        >
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+  {cartItems.map((item) => (
+    <tr key={item.id}>
+      <td className="py-2 px-4 border-b flex items-center">
+        <img
+          src={item.lokasi_gambar || "https://via.placeholder.com/100"}
+          alt={item.produk_nama || "Unknown"}
+          className="w-16 h-16 mr-4"
+        />
+        <span>{item.produk_nama || "No Name"}</span>
+      </td>
+      <td className="py-2 px-4 border-b">Rp.{item.harga.toLocaleString()}</td>
+      <td className="py-2 px-4 border-b">{item.jumlah}</td>
+      <td className="py-2 px-4 border-b">
+        Rp.{(item.harga * item.jumlah).toLocaleString()}
+      </td>
+      <td className="py-2 px-4 border-b">
+        <button
+          onClick={() => handleRemove(item.id)}
+          className="bg-red-500 text-white px-2 py-1 rounded"
+        >
+          Remove
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
               </table>
             </div>
 

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import styles from '../../assets/css/SignUp.module.css';
-import Header from '../../components/user/Header';
-import Footer from '../../components/user/Footer';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import styles from "../../assets/css/SignUp.module.css";
+import Header from "../../components/user/Header";
+import Footer from "../../components/user/Footer";
+
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -15,56 +16,60 @@ function Login() {
     e.preventDefault();
   
     if (!email || !password) {
-      setError('Email and password are required!');
+      setError("Email and password are required!");
       return;
     }
-    setError('');
+    setError("");
     setLoading(true);
   
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
-      console.log('Login Response:', response.data); // Debugging respons API
+      const response = await axios.post("http://127.0.0.1:8000/api/login", {
+        email,
+        password,
+      });
+  
+      console.log("Login Response:", response.data); // Debugging respons API
   
       if (response.data.success) {
-        const userRole = response.data.role; // Ambil langsung dari response.data
+        const { role, token, user } = response.data;
   
         // Validasi role
-        if (!userRole) {
-          setError('Role tidak ditemukan. Silakan hubungi admin.');
+        if (!role || !user) {
+          setError("Role atau user tidak ditemukan. Silakan hubungi admin.");
           setLoading(false);
           return;
         }
   
-        // Simpan token dan role ke localStorage
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('role', userRole); // Simpan role untuk akses cepat
+        // Simpan token, role, dan user ke localStorage
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", role);
+        localStorage.setItem("user", JSON.stringify(user));
   
         // Navigasi berdasarkan role
-        switch (userRole) {
-          case 'admin':
-            navigate('/dashboard');
+        switch (role) {
+          case "admin":
+            navigate("/dashboard");
             break;
-          case 'penjual':
-          case 'customer':
-          case 'guest':
-            navigate('/');
+          case "penjual":
+          case "customer":
+          case "guest":
+            navigate("/");
             break;
           default:
-            setError('Role tidak valid.');
+            setError("Role tidak valid.");
         }
   
-        alert('Login successful!');
+        alert("Login successful!");
       } else {
-        setError(response.data.message || 'Login failed.');
+        setError(response.data.message || "Login failed.");
       }
     } catch (error) {
-      setError('Login error. Please try again.');
-      console.error('Login error:', error);
+      console.error("Login error:", error);
+      setError("Login error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-  
   
 
   return (
@@ -102,7 +107,7 @@ function Login() {
           </div>
           {error && <p className={styles.errorText}>{error}</p>}
           <button type="submit" className={styles.submitButton} disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 

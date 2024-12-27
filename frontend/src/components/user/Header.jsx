@@ -1,7 +1,17 @@
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import styles from '../../assets/user/css/Header.module.css';
 
 function Header() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('role');
+
+    navigate('/login');
+  }
+
   return (
     <header>
       <nav className={styles.navbar}>
@@ -9,18 +19,28 @@ function Header() {
           <a href="#">PRELOVED</a>
         </div>
         <ul className={styles.navLinks}>
-          <li><Link to="/">Home</Link></li> {/* Gunakan Link untuk navigasi */}
-          <li><Link to="/about">About</Link></li> {/* Gunakan Link untuk navigasi */}
-          <li><Link to="/contact">Contact</Link></li> {/* Gunakan Link untuk navigasi */}
-          <li><Link to="/login">Login</Link>/<Link to="/register">Sign Up</Link></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+          {
+            localStorage.getItem('token') ? (
+              <>
+                <li><Link to="/profile">Profile</Link></li>
+                <li><button onClick={logout}>Logout</button></li>
+              </>
+            ) : (
+              <>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/register">Sign Up</Link></li>
+              </>
+            )
+          }
         </ul>
         <div className={styles.container}>
-          {/* Search Bar */}
           <div className={styles.searchBar}>
             <input type="text" placeholder="What are you looking for?" />
             <i className="fas fa-search"></i>
           </div>
-          {/* Icons (Favorites & Cart) */}
           <div className={styles.icons}>
             <i className="far fa-heart" title="Favorite"></i>
             <Link to="/cart">
@@ -35,3 +55,4 @@ function Header() {
 }
 
 export default Header;
+

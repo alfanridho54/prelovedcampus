@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../../assets/user/css/Category.module.css";
 
-const Category = () => {
+const Category = ({ onCategorySelect }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [kategori, setKategori] = useState([]);
 
-  // Ambil data kategori produk dari API
   const fetchKategori = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/kategori-produk");
@@ -40,12 +39,27 @@ const Category = () => {
         ) : error ? (
           <p className={styles.errorText}>{error}</p>
         ) : (
-          kategori.map((item, index) => (
-            <div key={item.id} className={styles.featureItem}>
+          <>
+            {/* Opsi "All" */}
+            <div
+              className={styles.featureItem}
+              onClick={() => onCategorySelect(0)} // Passing 0 untuk kategori "All"
+            >
               <i className={`fas fa-tag ${styles.icon}`}></i>
-              <p className={styles.featureText}>{item.kategori}</p>
+              <p className={styles.featureText}>All</p>
             </div>
-          ))
+            {/* Daftar kategori */}
+            {kategori.map((item) => (
+              <div
+                key={item.id}
+                className={styles.featureItem}
+                onClick={() => onCategorySelect(item.id)}
+              >
+                <i className={`fas fa-tag ${styles.icon}`}></i>
+                <p className={styles.featureText}>{item.kategori}</p>
+              </div>
+            ))}
+          </>
         )}
       </div>
     </div>

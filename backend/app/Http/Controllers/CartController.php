@@ -24,11 +24,13 @@ class CartController extends Controller
                     'harga' => $item->produk->harga,
                     'jumlah' => $item->jumlah,
                     'subtotal' => $item->produk->harga * $item->jumlah,
+                    'lokasi_gambar' => $item->produk->lokasi_gambar, // Tambahkan gambar
                 ];
             });
 
         return new ResponsResource(true, 'List Data Keranjang', $cartItems);
     }
+
 
     // Menambah produk ke keranjang
     public function store(Request $request)
@@ -74,6 +76,7 @@ class CartController extends Controller
         $cartItem->delete();
         return new ResponsResource(true, 'Item berhasil dihapus dari keranjang', null);
     }
+
 
     // Checkout keranjang
     public function checkout(Request $request)
