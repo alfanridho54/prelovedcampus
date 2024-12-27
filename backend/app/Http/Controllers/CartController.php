@@ -24,7 +24,7 @@ class CartController extends Controller
                     'harga' => $item->produk->harga,
                     'jumlah' => $item->jumlah,
                     'subtotal' => $item->produk->harga * $item->jumlah,
-                    'lokasi_gambar' => $item->produk->lokasi_gambar, // Tambahkan gambar
+                    'lokasi_gambar' =>  asset('storage/' . $item->produk->lokasi_gambar)
                 ];
             });
 
