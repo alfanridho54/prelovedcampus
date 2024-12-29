@@ -16,7 +16,7 @@ function Header() {
     <header>
       <nav className={styles.navbar}>
         <div className={styles.logo}>
-          <a href="#">PRELOVED</a>
+          <a><Link to="/">PRELOVED</Link></a>
         </div>
         <ul className={styles.navLinks}>
           <li><Link to="/">Home</Link></li>

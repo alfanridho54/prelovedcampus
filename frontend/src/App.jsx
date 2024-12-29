@@ -17,6 +17,7 @@ import About from './pages/user/About';
 import Contact from './pages/user/Contact';
 import Home from './pages/user/Home';
 import DetailProduk from './pages/user/DetailProduk';
+import Profile from "./pages/user/Profile";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/detail-produk/:id" element={<DetailProduk />} />
+        <Route path="/profile" element={<Profile />} />
 
         {/* Rute Admin */}
         <Route element={<Layout />}>
