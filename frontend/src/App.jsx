@@ -17,35 +17,43 @@ import About from './pages/user/About';
 import Contact from './pages/user/Contact';
 import Home from './pages/user/Home';
 import DetailProduk from './pages/user/DetailProduk';
+import Profile from "./pages/user/Profile";
+import Checkout from "./pages/user/Checkout";
+import Unauthorized from "./pages/admin/Unauthorized";
+import CheckoutSuccess from "./pages/user/CheckoutSuccess";
 
 function App() {
   return (
-    <>
-      <Routes>
-        {/* Rute Publik */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/detail-produk/:id" element={<DetailProduk />} />
+    <Routes>
+      {/* Rute Publik */}
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/detail-produk/:id" element={<DetailProduk />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/checkout-success" element={<CheckoutSuccess />} />
 
-        {/* Rute Admin */}
-        <Route element={<Layout />}>
-          <Route element={<Protected />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/produk" element={<Produk />} />
-            <Route path="/produk/edit/:id" element={<EditProduk />} />
-            <Route path="/produk/create" element={<AddProduk />} />
-            <Route path="/kategori" element={<Kategori />} />
-            <Route path="/kategori/create" element={<AddKategori />} />
-            <Route path="/kategori/edit/:id" element={<EditKategori />} />
-            <Route path="/transaksi" element={<Transaksi />} />
-          </Route>
+      {/* Rute Unauthorized */}
+      <Route path="/unauthorized" element={<Unauthorized />} />
+
+      {/* Rute Dashboard untuk Admin dan Penjual */}
+      <Route element={<Layout />}>
+        <Route element={<Protected allowedRoles={['admin', 'penjual']} />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/produk" element={<Produk />} />
+          <Route path="/produk/edit/:id" element={<EditProduk />} />
+          <Route path="/produk/create" element={<AddProduk />} />
+          <Route path="/kategori" element={<Kategori />} />
+          <Route path="/kategori/create" element={<AddKategori />} />
+          <Route path="/kategori/edit/:id" element={<EditKategori />} />
+          <Route path="/transaksi" element={<Transaksi />} />
         </Route>
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   );
 }
 

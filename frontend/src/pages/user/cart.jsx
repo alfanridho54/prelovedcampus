@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from "../../assets/css/Cart.module.css";
+import styles from "../../assets/css/Cart.module.css"; // Gantilah dengan path CSS Anda yang sesuai
 import Header from "../../components/user/Header";
 import Footer from "../../components/user/Footer";
 
@@ -70,72 +70,64 @@ export default function Cart() {
           <p>Loading...</p>
         ) : cartItems.length === 0 ? (
           <div className={styles.emptyCart}>
-            <p>Keranjang kosong. </p>
+            <p>Keranjang kosong.</p>
             <Link to="/" className={styles.shopLink}>
               Belanja Sekarang
             </Link>
           </div>
         ) : (
           <>
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white">
-                <thead>
-                  <tr>
-                    <th className="py-2 px-4 border-b">Product</th>
-                    <th className="py-2 px-4 border-b">Price</th>
-                    <th className="py-2 px-4 border-b">Quantity</th>
-                    <th className="py-2 px-4 border-b">Subtotal</th>
-                    <th className="py-2 px-4 border-b">Actions</th>
+            <h1>Daftar Belanja</h1>
+            <table className={styles.cartTable}>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((item) => (
+                  <tr key={item.id}>
+                    <td className={styles.productCell}>
+                      <img
+                        src={item.lokasi_gambar || "https://via.placeholder.com/100"}
+                        alt={item.produk_nama || "No Name"}
+                        className={styles.productImage}
+                      />
+                      <span>{item.produk_nama || "No Name"}</span>
+                    </td>
+                    <td>Rp.{item.harga.toLocaleString()}</td>
+                    <td>{item.jumlah}</td>
+                    <td>Rp.{(item.harga * item.jumlah).toLocaleString()}</td>
+                    <td>
+                      <button
+                        onClick={() => handleRemove(item.id)}
+                        className={styles.btnDanger}
+                      >
+                        Hapus
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-  {cartItems.map((item) => (
-    <tr key={item.id}>
-      <td className="py-2 px-4 border-b flex items-center">
-        <img
-          src={item.lokasi_gambar || "https://via.placeholder.com/100"}
-          alt={item.produk_nama || "Unknown"}
-          className="w-16 h-16 mr-4"
-        />
-        <span>{item.produk_nama || "No Name"}</span>
-      </td>
-      <td className="py-2 px-4 border-b">Rp.{item.harga.toLocaleString()}</td>
-      <td className="py-2 px-4 border-b">{item.jumlah}</td>
-      <td className="py-2 px-4 border-b">
-        Rp.{(item.harga * item.jumlah).toLocaleString()}
-      </td>
-      <td className="py-2 px-4 border-b">
-        <button
-          onClick={() => handleRemove(item.id)}
-          className="bg-red-500 text-white px-2 py-1 rounded"
-        >
-          Remove
-        </button>
-      </td>
-    </tr>
-  ))}
-</tbody>
+                ))}
+              </tbody>
+            </table>
 
-              </table>
-            </div>
-
-            <div className="mt-8 border-t border-b border-black p-4">
-              <div className="flex justify-between py-2">
-                <span>Subtotal:</span>
-                <span>Rp.{calculateSubtotal().toLocaleString()}</span>
+            <div className={styles.orderSummary}>
+              <h3>Ringkasan Belanja</h3>
+              <p className={styles.orderTotal}>
+                <strong>Order Total:</strong> Rp.{calculateSubtotal().toLocaleString()}
+              </p>
+              <div className={styles.btnContainer}>
+                <button
+                  className={styles.btnPrimary}
+                  onClick={() => navigate("/checkout")}
+                >
+                  Checkout
+                </button>
               </div>
-              <div className="flex justify-between py-2">
-                <span>Shipping:</span>
-                <span>Free</span>
-              </div>
-              <div className="flex justify-between py-2 font-bold">
-                <span>Total:</span>
-                <span>Rp.{calculateSubtotal().toLocaleString()}</span>
-              </div>
-            </div>
-
-            <div className="mt-4 text-center">
-              <button className={styles.button}>Checkout</button>
             </div>
           </>
         )}

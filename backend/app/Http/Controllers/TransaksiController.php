@@ -1,20 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\ResponsResource;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Transaksi;
 use App\Models\Produk;
 
 class TransaksiController extends Controller
 {
-    // Menampilkan semua transaksi
-    public function index()
+    // Menampilkan semua transaksi yang terkait dengan produk yang dimiliki oleh penjual
+    public function index(Request $request)
     {
-        $transaksi = DB::table('transaksi')
+        $user = Auth::user(); // Ambil user yang sedang login
+
+        $query = DB::table('transaksi')
             ->join('user', 'transaksi.user_id', '=', 'user.id')
             ->join('produk', 'transaksi.produk_id', '=', 'produk.id')
             ->join('status_pembayaran', 'transaksi.status_pembayaran_id', '=', 'status_pembayaran.id')
@@ -27,8 +28,14 @@ class TransaksiController extends Controller
                 'transaksi.metode_pembayaran',
                 'transaksi.tanggal_transaksi',
                 'status_pembayaran.status_pembayaran as status_pembayaran'
-            )
-            ->get();
+            );
+
+        // Jika user adalah penjual, batasi transaksi hanya yang terkait dengan produk miliknya
+        if ($user->role === 'penjual') {
+            $query->where('produk.penjual_id', $user->id);
+        }
+
+        $transaksi = $query->get();
 
         return new ResponsResource(true, 'List Data Transaksi', $transaksi);
     }
@@ -36,6 +43,9 @@ class TransaksiController extends Controller
     // Menampilkan detail transaksi berdasarkan ID
     public function show($id)
     {
+        $user = auth()->user(); // Ambil user yang sedang login
+
+        // Ambil transaksi berdasarkan ID
         $transaksi = DB::table('transaksi')
             ->join('user', 'transaksi.user_id', '=', 'user.id')
             ->join('produk', 'transaksi.produk_id', '=', 'produk.id')
@@ -53,8 +63,14 @@ class TransaksiController extends Controller
             ->where('transaksi.id', $id)
             ->first();
 
+        // Jika transaksi tidak ditemukan
         if (!$transaksi) {
             return new ResponsResource(false, 'Transaksi tidak ditemukan', null);
+        }
+
+        // Jika user adalah penjual, pastikan transaksi ini terkait dengan produk miliknya
+        if ($user->role === 'penjual' && $transaksi->produk_id && $transaksi->penjual_id !== $user->id) {
+            return new ResponsResource(false, 'Anda tidak memiliki akses untuk melihat transaksi ini', null);
         }
 
         return new ResponsResource(true, 'Detail Data Transaksi', $transaksi);

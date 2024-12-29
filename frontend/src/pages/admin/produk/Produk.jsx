@@ -21,16 +21,29 @@ function Produk() {
       setLoading(false);
       return;
     }
-
+  
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/produk", {
+      const userResponse = await axios.get("http://127.0.0.1:8000/api/user", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
+  
+      const userRole = userResponse.data.role; // Ambil role user dari response
+  
+      let apiUrl = "http://127.0.0.1:8000/api/penjual/produk"; // Default untuk penjual
+      if (userRole === "admin") {
+        apiUrl = "http://127.0.0.1:8000/api/produk"; // URL untuk mengambil semua produk jika admin
+      }
+  
+      const response = await axios.get(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
       if (response.data.success) {
-        setProduk(response.data.data);
+        setProduk(response.data.data); // Set produk dari backend
       } else {
         setError("Data produk tidak ditemukan.");
       }
@@ -40,6 +53,10 @@ function Produk() {
       setLoading(false);
     }
   };
+  
+  
+  
+  
 
   // Inisialisasi DataTables
   useEffect(() => {

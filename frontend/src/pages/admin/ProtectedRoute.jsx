@@ -1,21 +1,27 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-const Protected = () => {
+const ProtectedRoute = () => {
     const token = localStorage.getItem("token");
-    const userRole = localStorage.getItem("role"); // Ambil role dari localStorage
+    const userRole = localStorage.getItem("role");
 
+    // Log untuk debugging
+    console.log("Token:", token);
+    console.log("Role:", userRole);
+
+    // Validasi token
     if (!token) {
-        // Jika tidak ada token, arahkan ke halaman login
+        console.warn("Token tidak ditemukan. Arahkan ke login.");
         return <Navigate to="/login" />;
     }
 
-    if (userRole !== "admin") {
-        // Jika bukan admin, arahkan ke halaman utama
-        return <Navigate to="/" />;
+    // Validasi role manual (Admin dan Penjual diizinkan)
+    if (userRole === "admin" || userRole === "penjual") {
+        return <Outlet />;
     }
 
-    // Jika admin, izinkan akses
-    return <Outlet />;
+    // Role tidak valid, arahkan ke halaman Unauthorized
+    console.warn(`Akses ditolak untuk role: ${userRole}`);
+    return <Navigate to="/unauthorized" />;
 };
 
-export default Protected;
+export default ProtectedRoute;

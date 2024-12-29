@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from "./DetailProduk.module.css"; // CSS module untuk styling
+import Header from "../../components/user/Header";
+import Footer from "../../components/user/Footer";
+import styles from "../../assets/user/css/DetailProduk.module.css"; // CSS module untuk styling
 
 function DetailProduk() {
   const { id } = useParams();
@@ -45,7 +47,6 @@ function DetailProduk() {
     try {
       user = JSON.parse(userString);
     } catch (error) {
-      console.error("Error parsing user data:", error);
       alert("Data user tidak valid. Silakan login ulang.");
       navigate("/login");
       return;
@@ -68,8 +69,55 @@ function DetailProduk() {
       alert("Produk berhasil ditambahkan ke keranjang!");
       navigate("/cart");
     } catch (error) {
-      console.error("Error adding to cart:", error);
       alert("Gagal menambahkan produk ke keranjang.");
+    }
+  };
+
+  const handleBuyNow = async () => {
+    const token = localStorage.getItem("token");
+    const userString = localStorage.getItem("user");
+
+    if (!token || !userString) {
+      alert("Anda harus login untuk melakukan checkout.");
+      navigate("/login");
+      return;
+    }
+
+    let user;
+    try {
+      user = JSON.parse(userString);
+    } catch (error) {
+      alert("Data user tidak valid. Silakan login ulang.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      // Kirim data untuk checkout
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/checkout", // Sesuaikan dengan endpoint checkout
+        {
+          user_id: user.id,
+          produk_id: produk.id,
+          jumlah: jumlah,
+          metode_pembayaran: "Cash on Delivery", // Sesuaikan dengan metode pembayaran yang Anda pilih
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        alert("Checkout berhasil!");
+        navigate("/checkout"); // Redirect ke halaman checkout
+      } else {
+        alert("Gagal melakukan checkout.");
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("Terjadi kesalahan saat checkout.");
     }
   };
 
@@ -82,57 +130,51 @@ function DetailProduk() {
   }
 
   return (
-    <div className={styles.detailContainer}>
-      <div className={styles.breadcrumb}>
-        <span>Home</span> / <span>Product</span>
-      </div>
+    <>
+      <Header />
 
-      <div className={styles.productDetail}>
-        <div className={styles.imageSection}>
-          <img src={produk.image} alt={produk.nama} className={styles.productImage} />
-        </div>
-
-        <div className={styles.infoSection}>
-          <h1 className={styles.productTitle}>{produk.nama}</h1>
-          <p className={styles.productPrice}>Rp.{produk.harga.toLocaleString()}</p>
-          <p className={styles.productDescription}>{produk.deskripsi}</p>
-
-          <label className={styles.quantityLabel}>
-            Jumlah:
-            <input
-              type="number"
-              value={jumlah}
-              onChange={(e) => setJumlah(Number(e.target.value))}
-              min="1"
-              max={produk.stok}
-              className={styles.quantityInput}
-            />
-          </label>
-
-          <button className={styles.buyNowButton} onClick={handleAddToCart}>
-            Tambah ke Keranjang
-          </button>
-          <div className={styles.iconButtons}>
-            <button className={styles.iconButton}>
-              <i className="fa fa-heart"></i>
-            </button>
-            <button className={styles.iconButton}>
-              <i className="fa fa-shopping-cart"></i>
-            </button>
+      <div className={styles.cardContainer}>
+        <div className={styles.breadcrump}>Home / Product</div>
+        <div className={styles.card}>
+          <div className={styles.cardImage}>
+            <img src={produk.lokasi_gambar} alt={produk.nama} className={styles.cardImage} />
           </div>
+          <div className={styles.cardContent}>
+            <h2 className={styles.cardTitle}>{produk.nama}</h2>
+            <p className={styles.cardPrice}>Rp.{produk.harga.toLocaleString()}</p>
+            <p className={styles.cardDescription}>{produk.deskripsi}</p>
+            <p className={styles.cardPenjual}>Dijual oleh: {produk.penjual_nama}</p>
 
-          <div className={styles.additionalInfo}>
-            <div className={styles.infoItem}>
-              <i className="fa fa-truck"></i> Free Delivery
+            {/* Tombol Buy Now (langsung ke checkout) */}
+            <button className={styles.btnBuy} onClick={handleBuyNow}>Buy Now</button>
+
+            <div className={styles.quantity}>
+              <label>
+                Jumlah:
+                <input
+                  type="number"
+                  value={jumlah}
+                  onChange={(e) => setJumlah(Number(e.target.value))}
+                  min="1"
+                  max={produk.stok}
+                />
+              </label>
             </div>
-            <div className={styles.infoItem}>
-              <i className="fa fa-undo"></i> Return Delivery
+
+            <div className={styles.cardIcons}>
+              {/* Tombol cart untuk menambahkan produk ke keranjang */}
+              <button className={styles.btnBuy} onClick={handleAddToCart}>
+                <i className="fa fa-shopping-cart"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 }
 
 export default DetailProduk;
+

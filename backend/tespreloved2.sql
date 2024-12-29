@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Des 2024 pada 14.28
+-- Waktu pembuatan: 29 Des 2024 pada 13.51
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -59,15 +59,6 @@ CREATE TABLE `cart` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `cart`
---
-
-INSERT INTO `cart` (`id`, `user_id`, `produk_id`, `jumlah`, `created_at`, `updated_at`) VALUES
-(1, 7, 2, 1, '2024-12-25 17:07:53', '2024-12-25 17:07:53'),
-(4, 10, 2, 1, '2024-12-26 05:53:15', '2024-12-26 05:53:15'),
-(5, 10, 3, 1, '2024-12-26 05:53:23', '2024-12-26 05:53:23');
 
 -- --------------------------------------------------------
 
@@ -138,7 +129,7 @@ CREATE TABLE `kategori_produk` (
 INSERT INTO `kategori_produk` (`id`, `kategori`) VALUES
 (1, 'Elektronik'),
 (2, 'Pakaian'),
-(3, 'Makanan'),
+(3, 'Furniture'),
 (4, 'Aksesoris');
 
 -- --------------------------------------------------------
@@ -251,7 +242,61 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (48, 'App\\Models\\User', 10, 'token', '5a703a693d6a8c98b6e6de8bf47201960804d6425c04bb8c3f4cb73ac2b525d0', '[\"*\"]', NULL, NULL, '2024-12-26 05:23:37', '2024-12-26 05:23:37'),
 (49, 'App\\Models\\User', 10, 'token', 'b67d0b7e6b9cf71426ae5331c2dc3419f001f1b7364d8894eed3ee2da744292d', '[\"*\"]', '2024-12-26 05:53:25', NULL, '2024-12-26 05:24:20', '2024-12-26 05:53:25'),
 (50, 'App\\Models\\User', 6, 'token', '066f1a70db40742b0cd8ae88b3ec91abe3d22aaa4c0db4a14c1a0994d5ce7907', '[\"*\"]', '2024-12-26 06:06:27', NULL, '2024-12-26 06:04:20', '2024-12-26 06:06:27'),
-(51, 'App\\Models\\User', 6, 'token', 'afbc941606e4ee7b66d0a87ae70435329f81097b44bb4bf9f9f07ba40a761d43', '[\"*\"]', '2024-12-26 06:26:52', NULL, '2024-12-26 06:07:53', '2024-12-26 06:26:52');
+(51, 'App\\Models\\User', 6, 'token', 'afbc941606e4ee7b66d0a87ae70435329f81097b44bb4bf9f9f07ba40a761d43', '[\"*\"]', '2024-12-26 06:26:52', NULL, '2024-12-26 06:07:53', '2024-12-26 06:26:52'),
+(52, 'App\\Models\\User', 10, 'token', 'e83bc701cff7d183cdf4982b3d69e73122636a5cc06c1e0bf85527735d7bab46', '[\"*\"]', NULL, NULL, '2024-12-26 16:26:07', '2024-12-26 16:26:07'),
+(53, 'App\\Models\\User', 10, 'token', '66c5f080314a2122cc5c4098811e26a52e5346296897a2600b61cbde1850f07d', '[\"*\"]', '2024-12-26 17:08:06', NULL, '2024-12-26 16:26:55', '2024-12-26 17:08:06'),
+(54, 'App\\Models\\User', 6, 'token', '2cacf9016c960af1c892252a1df94d3ab8596685484ca7d27e90e96d4b9aed24', '[\"*\"]', '2024-12-26 17:40:19', NULL, '2024-12-26 17:18:48', '2024-12-26 17:40:19'),
+(55, 'App\\Models\\User', 10, 'token', '83443f8502c906eb8aa99e8b2d127a8e1ba44c71cbda9715e9a9e5aa836a35dc', '[\"*\"]', '2024-12-26 17:41:57', NULL, '2024-12-26 17:40:56', '2024-12-26 17:41:57'),
+(56, 'App\\Models\\User', 6, 'token', 'b5fae10c2799d30270048aac25800f5a64a4332241d2a74469d63a86098b23c1', '[\"*\"]', '2024-12-26 17:44:19', NULL, '2024-12-26 17:42:17', '2024-12-26 17:44:19'),
+(57, 'App\\Models\\User', 10, 'token', 'b452bd2458671d37f2be6ea43b4dbe761a801a5ede1576df418dcfb24038817c', '[\"*\"]', '2024-12-26 17:45:15', NULL, '2024-12-26 17:45:05', '2024-12-26 17:45:15'),
+(58, 'App\\Models\\User', 11, 'token', 'a6008cd49fe2e90595d064d6fc13c19b7436324cf7aa741bccd40bdddfec1df7', '[\"*\"]', '2024-12-26 17:47:42', NULL, '2024-12-26 17:47:00', '2024-12-26 17:47:42'),
+(59, 'App\\Models\\User', 11, 'token', 'a43d8d1b6b882329f6d81c99587aa68f1bd6712fc168400553bc2689af900112', '[\"*\"]', NULL, NULL, '2024-12-26 17:51:47', '2024-12-26 17:51:47'),
+(60, 'App\\Models\\User', 11, 'token', 'c2b6210cf6291b64f335f209e4e096a07776dda21e7d05704b702b7ad78cbaed', '[\"*\"]', NULL, NULL, '2024-12-26 17:53:25', '2024-12-26 17:53:25'),
+(61, 'App\\Models\\User', 10, 'token', 'abd89ee4771c9bcf04babaea5187629745abab575542ca8dda646e8491ee4024', '[\"*\"]', NULL, NULL, '2024-12-26 17:53:55', '2024-12-26 17:53:55'),
+(62, 'App\\Models\\User', 10, 'token', 'f59ddc2ee6f01acbfeed6518feda7d4693d63a8f9cc750df37f73f96e387c847', '[\"*\"]', NULL, NULL, '2024-12-26 17:57:09', '2024-12-26 17:57:09'),
+(63, 'App\\Models\\User', 10, 'token', 'cea92297df1ebc7eb68cec362e2691670445bca63379ce216ad0f2aa45b19ba8', '[\"*\"]', NULL, NULL, '2024-12-26 17:59:00', '2024-12-26 17:59:00'),
+(64, 'App\\Models\\User', 10, 'token', '3d75fa4b9b0a945db2c1afb96c3a16af7695de6a8434c6fda0665a3af72654eb', '[\"*\"]', '2024-12-26 18:00:32', NULL, '2024-12-26 18:00:20', '2024-12-26 18:00:32'),
+(65, 'App\\Models\\User', 11, 'token', '15b366044e95fcb1c5c227277f91f5926c3b76f607228ea8671eb52717ed205d', '[\"*\"]', '2024-12-26 18:02:31', NULL, '2024-12-26 18:00:43', '2024-12-26 18:02:31'),
+(66, 'App\\Models\\User', 10, 'token', 'd015e46f3cfab371fc3befd73b912ad8abe7ec1757ca43592177874ea116de20', '[\"*\"]', '2024-12-26 18:02:48', NULL, '2024-12-26 18:02:41', '2024-12-26 18:02:48'),
+(67, 'App\\Models\\User', 10, 'token', '1348b60a7bc34d6eb3ec3518c8d7e4e2dafece3d973b836e04682e1f16afd9e2', '[\"*\"]', '2024-12-26 18:38:29', NULL, '2024-12-26 18:04:30', '2024-12-26 18:38:29'),
+(68, 'App\\Models\\User', 10, 'token', '4f8f8a4fc98686125cc682bff79a2b687a32dcd05fb58d079fc7fe9c14cbda22', '[\"*\"]', NULL, NULL, '2024-12-26 18:38:43', '2024-12-26 18:38:43'),
+(69, 'App\\Models\\User', 6, 'token', '11079950679cd012c5a7f0cd7a0e5dfcd81973da7df9f3053052c80dce385020', '[\"*\"]', '2024-12-26 18:41:00', NULL, '2024-12-26 18:40:06', '2024-12-26 18:41:00'),
+(70, 'App\\Models\\User', 10, 'token', 'd8648fd0293f5978fa3c4cea1866f7c195089ac8a3f16751dc492462b70ec50e', '[\"*\"]', '2024-12-26 18:42:07', NULL, '2024-12-26 18:42:03', '2024-12-26 18:42:07'),
+(71, 'App\\Models\\User', 10, 'token', 'a6973e81f63e341a8bd2139b8a52123fb9d6bb6aeb008c4d1f31be6a165d7d0c', '[\"*\"]', '2024-12-26 19:25:41', NULL, '2024-12-26 19:18:09', '2024-12-26 19:25:41'),
+(72, 'App\\Models\\User', 10, 'token', '97542239523c13f84535dbe0ee924bfe18f4b01153e2b3bf255c4419ca9c6218', '[\"*\"]', '2024-12-27 00:04:24', NULL, '2024-12-27 00:04:13', '2024-12-27 00:04:24'),
+(73, 'App\\Models\\User', 6, 'token', '6fd4f1ddd91a8b2ee2524b55f9a7a0ec433176672fbbdd00be2c2702304a4c57', '[\"*\"]', '2024-12-27 00:28:25', NULL, '2024-12-27 00:28:19', '2024-12-27 00:28:25'),
+(74, 'App\\Models\\User', 10, 'token', '7256142e91e7aa444d5386b7a9edc2fe1eb8a87de02e1259bdf1acfa0e1db495', '[\"*\"]', '2024-12-27 00:44:01', NULL, '2024-12-27 00:43:06', '2024-12-27 00:44:01'),
+(75, 'App\\Models\\User', 6, 'token', 'e8518593c7e1e43be9dcd58566138dfc020e94c6fb0b598b60cff3f26e4df082', '[\"*\"]', '2024-12-27 00:45:14', NULL, '2024-12-27 00:44:16', '2024-12-27 00:45:14'),
+(76, 'App\\Models\\User', 10, 'token', 'bdc407dc0fae77ce6044df19bb9c12290a3ecf892f26e2fd8c6df050195f048c', '[\"*\"]', '2024-12-27 18:11:56', NULL, '2024-12-27 17:04:12', '2024-12-27 18:11:56'),
+(77, 'App\\Models\\User', 6, 'token', '81935a65dbc841236cc80326b19e7e8484d0e628fe68b3d87ea8ee9ef46a61a7', '[\"*\"]', NULL, NULL, '2024-12-27 17:40:19', '2024-12-27 17:40:19'),
+(78, 'App\\Models\\User', 10, 'token', 'd1afb7a0a2058540b947e3238b05275babec7073362ad0be88f474dd578d1f9c', '[\"*\"]', '2024-12-27 18:22:21', NULL, '2024-12-27 18:12:06', '2024-12-27 18:22:21'),
+(79, 'App\\Models\\User', 6, 'token', 'b4aa2bb3875115965e0ca39ecec68ffc9d09f8a665a2373df4c0a02570064024', '[\"*\"]', '2024-12-27 19:27:35', NULL, '2024-12-27 18:23:21', '2024-12-27 19:27:35'),
+(80, 'App\\Models\\User', 10, 'token', '3e095afa128592443074a143245498154ec6a8300e59e9df8a97f3ab8b7b3656', '[\"*\"]', '2024-12-28 02:11:41', NULL, '2024-12-27 19:28:13', '2024-12-28 02:11:41'),
+(81, 'App\\Models\\User', 10, 'token', '6e0536ba42f438fef6c32814cced23df530fafaf4b412a38c366ec551e09b25d', '[\"*\"]', '2024-12-28 02:30:10', NULL, '2024-12-28 02:11:58', '2024-12-28 02:30:10'),
+(82, 'App\\Models\\User', 6, 'token', 'b69f027c04981a538c551a2394fc46bbe0765d0b60599029ca698edfa325ccd8', '[\"*\"]', NULL, NULL, '2024-12-28 02:30:47', '2024-12-28 02:30:47'),
+(83, 'App\\Models\\User', 10, 'token', '267b507cb6ef7cccf3c0dab0cfe6d22c7f603687bdd435fa54e7de5865f7c53a', '[\"*\"]', '2024-12-28 03:19:03', NULL, '2024-12-28 02:31:14', '2024-12-28 03:19:03'),
+(84, 'App\\Models\\User', 10, 'token', '8b4912c075fcded9deb092f9fb2e44f30ad895b2da8dcb4fc185692dc3c4eec2', '[\"*\"]', '2024-12-28 17:17:34', NULL, '2024-12-28 16:42:08', '2024-12-28 17:17:34'),
+(85, 'App\\Models\\User', 6, 'token', '571bd42a755b7064b3b7811049c37cbe8adf2378762ebef1f9cf9eb44ebfb293', '[\"*\"]', '2024-12-28 17:19:07', NULL, '2024-12-28 17:17:52', '2024-12-28 17:19:07'),
+(86, 'App\\Models\\User', 10, 'token', '69fbae35c2443596c190e104f80f7cbe939d05796934847ef1a98b3fa0c8a85a', '[\"*\"]', '2024-12-28 18:25:48', NULL, '2024-12-28 17:42:49', '2024-12-28 18:25:48'),
+(87, 'App\\Models\\User', 6, 'token', 'abbdb452be9f03a9b819f732318a108f83cb1609dd5e0f7aefda92b73451307f', '[\"*\"]', '2024-12-28 19:19:10', NULL, '2024-12-28 18:26:33', '2024-12-28 19:19:10'),
+(88, 'App\\Models\\User', 10, 'token', '1f16d621bc46c079e3c4bd037feb27bf4c14b6ee618ba0e43c8b9da271fa916e', '[\"*\"]', '2024-12-28 19:46:58', NULL, '2024-12-28 19:21:04', '2024-12-28 19:46:58'),
+(89, 'App\\Models\\User', 12, 'token', 'fa735e52972ef6bb2bdcfcd3b9253363265027e9d1d4f417eb2935bba08d3367', '[\"*\"]', '2024-12-29 01:50:18', NULL, '2024-12-28 20:26:55', '2024-12-29 01:50:18'),
+(90, 'App\\Models\\User', 10, 'token', 'eb1afe7ed5e844b523cea54bb05ab1ced63d82c784a083d865a35c8e19f34508', '[\"*\"]', '2024-12-29 02:05:01', NULL, '2024-12-29 01:53:58', '2024-12-29 02:05:01'),
+(91, 'App\\Models\\User', 12, 'token', 'da52cb085f528771b44d8c6eacc44a33b2bf53910f65af91d1dbcffdda7dd6e0', '[\"*\"]', '2024-12-29 02:06:36', NULL, '2024-12-29 02:05:57', '2024-12-29 02:06:36'),
+(92, 'App\\Models\\User', 13, 'token', 'a4e6debaa26277d1633f62ebe872dd0d04845e5e33c1f91252b13aa72332bdd9', '[\"*\"]', '2024-12-29 02:23:23', NULL, '2024-12-29 02:20:30', '2024-12-29 02:23:23'),
+(93, 'App\\Models\\User', 13, 'token', 'f3ffd290e74a45f7db8bc2229acfcf4511859998ad2f0c381b8d5f15d0340cbf', '[\"*\"]', '2024-12-29 02:26:39', NULL, '2024-12-29 02:24:56', '2024-12-29 02:26:39'),
+(94, 'App\\Models\\User', 12, 'token', '2b409f5ecc51d6543ca02328d7fece592a4b6ad634706ca74c80d1514980cca3', '[\"*\"]', '2024-12-29 02:27:21', NULL, '2024-12-29 02:27:06', '2024-12-29 02:27:21'),
+(95, 'App\\Models\\User', 13, 'token', '1c8a828b642e065eea5b91b423d625cb286de7878d647049ffd886f5eafef9c4', '[\"*\"]', '2024-12-29 02:27:48', NULL, '2024-12-29 02:27:42', '2024-12-29 02:27:48'),
+(96, 'App\\Models\\User', 6, 'token', '2a2f4016b4e0198d0445fec535ad76ccb5b7f692d0134efb8bc99446751bf244', '[\"*\"]', '2024-12-29 02:28:50', NULL, '2024-12-29 02:28:24', '2024-12-29 02:28:50'),
+(97, 'App\\Models\\User', 12, 'token', '221d29ee6f254c4bcd6a70f3749f5e22275052fd1b7c8ac310264b02e1dc9847', '[\"*\"]', '2024-12-29 02:57:28', NULL, '2024-12-29 02:41:52', '2024-12-29 02:57:28'),
+(98, 'App\\Models\\User', 12, 'token', 'cda62abd3eacc21dcfc83092fe60068ff3d4d1f7000b1bd290479321971228bb', '[\"*\"]', '2024-12-29 04:47:02', NULL, '2024-12-29 02:57:47', '2024-12-29 04:47:02'),
+(99, 'App\\Models\\User', 12, 'token', '48eba9672b35d54c2947915a5adb3bc6d163d4e32d200b674f50aa3b9abcf7d4', '[\"*\"]', '2024-12-29 04:48:01', NULL, '2024-12-29 04:47:54', '2024-12-29 04:48:01'),
+(100, 'App\\Models\\User', 12, 'token', '273a1c8b4d5d4c02e9b5648888e72f10f319a9835cb1ed20032d593dacb73e62', '[\"*\"]', '2024-12-29 04:48:57', NULL, '2024-12-29 04:48:49', '2024-12-29 04:48:57'),
+(101, 'App\\Models\\User', 12, 'token', '2186dab90b25334cadd7b4aca5014a20661fd811bb9ec03418238fafe09eb864', '[\"*\"]', '2024-12-29 04:50:37', NULL, '2024-12-29 04:50:33', '2024-12-29 04:50:37'),
+(102, 'App\\Models\\User', 12, 'token', 'dabdde49ae725058a1502814b2f899381ded08bc9a0faa30e09a299d668b6a3c', '[\"*\"]', '2024-12-29 04:51:07', NULL, '2024-12-29 04:50:58', '2024-12-29 04:51:07'),
+(103, 'App\\Models\\User', 12, 'token', '31aed0e7d4924752235b011583cc13349b433f1c501e2afda542ab8d9da1fafc', '[\"*\"]', '2024-12-29 04:53:03', NULL, '2024-12-29 04:52:57', '2024-12-29 04:53:03'),
+(104, 'App\\Models\\User', 12, 'token', 'bc7c7d37e6dc3653583a6fc77c04a0e1c8ebeb7df7a2ef49ff1867a4bde1477e', '[\"*\"]', '2024-12-29 04:56:21', NULL, '2024-12-29 04:54:04', '2024-12-29 04:56:21'),
+(105, 'App\\Models\\User', 12, 'token', 'e1e570ab8016f9597f499232a75f4fddf598fcfac8b59b800b740f9e4c3ee8ed', '[\"*\"]', '2024-12-29 05:39:43', NULL, '2024-12-29 05:10:39', '2024-12-29 05:39:43');
 
 -- --------------------------------------------------------
 
@@ -266,19 +311,21 @@ CREATE TABLE `produk` (
   `deskripsi` longtext DEFAULT NULL,
   `stok` int(11) NOT NULL DEFAULT 0,
   `lokasi_gambar` longtext DEFAULT NULL,
-  `kategori_produk_id` int(11) NOT NULL
+  `kategori_produk_id` int(11) NOT NULL,
+  `penjual_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id`, `nama`, `harga`, `deskripsi`, `stok`, `lokasi_gambar`, `kategori_produk_id`) VALUES
-(1, 'Laptop', 15000000.00, 'Laptop Gaming dengan spesifikasi tinggi', 1, 'laptop.jpg', 1),
-(2, 'Kaos Polos', 50000.00, 'Kaos polos berbagai warna', 40, 'kaos.jpg', 2),
-(3, 'Topi', 25000.00, 'Topi keren', 1, 'topi.jpg', 4),
-(4, 'Jam Tangan', 250000.00, 'Jam tangan modern dan stylish', 15, 'jam.jpgss', 3),
-(5, 'Laptop', 15000000.00, 'Laptop Gaming', 10, NULL, 1);
+INSERT INTO `produk` (`id`, `nama`, `harga`, `deskripsi`, `stok`, `lokasi_gambar`, `kategori_produk_id`, `penjual_id`) VALUES
+(10, 'Laptop Gaming', 5000000.00, 'Minecraft rata kanan 1000 fps', 0, 'produk/x4uQNBLz6LY9tlJtW6K7eADfGerw1EB8RkRU5MqJ.jpg', 1, NULL),
+(11, 'Laptop murah', 1000000.00, 'laptop bagus', 0, 'produk/dBluXK5rJI9Csa2rf7pu7W53zCxw1t7Huz4gQhls.jpg', 1, 10),
+(12, 'Laptop Gaming', 5000000.00, 'Laptop murah gaming rata kanan', 0, 'produk/SNLbIfHZs3Bn3L9Fisbloy0Q23g3P83rGxcj71Of.jpg', 1, 10),
+(13, 'Topi', 20000.00, 'Topi yang membuatmu ganteng', 0, 'produk/KzxoYUwVsG9JcrY0d6QMSpT18Z0WAlZpubCawqSF.jpg', 4, 10),
+(14, 'Kaos Anime', 50000.00, 'Kaos anime yang bikin kamu ganteng', 1, 'produk/yOz1EDlkojAJ3HtDz23Z7FxNoSNVyMu4iWL5YjS6.jpg', 2, 13),
+(15, 'Topi NB', 50000.00, 'Topi yang membuat anda semakin ganteng', 1, 'produk/sTN1Fslmxz7aXRdi7H4BIwFIjviqaloJQef53jrh.jpg', 2, 12);
 
 -- --------------------------------------------------------
 
@@ -345,15 +392,15 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `user_id`, `produk_id`, `total_harga`, `jumlah_beli`, `metode_pembayaran`, `tanggal_transaksi`, `status_pembayaran_id`) VALUES
-(1, 3, 1, 30490000, 2, 'Transfer Bank', '2024-12-20 19:03:16', 1),
-(2, 3, 3, 0, 5, 'COD', '2024-12-20 19:03:16', 1),
-(3, 3, 1, 0, 2, 'Transfer Bank', '2024-12-21 06:29:17', 1),
-(4, 3, 3, 0, 5, 'COD', '2024-12-21 06:29:17', 1),
-(5, 1, 2, 0, 3, 'Transfer Bank', '2024-12-21 06:30:47', 1),
-(6, 2, 1, 0, 5, 'COD', '2024-12-21 06:30:47', 1),
-(7, 2, 1, 0, 1, 'COD', '2024-12-21 06:32:11', 1),
-(8, 1, 1, 30000000, 2, 'Transfer Bank', '2024-12-21 06:37:58', 1),
-(10, 7, 2, 100000, 2, 'Transfer Bank', '2024-12-25 06:58:18', 1);
+(24, 12, 13, 20000, 1, 'Transfer Bank', '2024-12-29 03:29:34', 1),
+(25, 12, 13, 20000, 1, 'COD', '2024-12-29 08:11:03', 1),
+(26, 12, 13, 20000, 1, 'Transfer Bank', '2024-12-29 08:13:27', 1),
+(27, 12, 12, 5000000, 1, 'Transfer Bank', '2024-12-29 08:19:58', 1),
+(28, 12, 12, 5000000, 1, 'Transfer Bank', '2024-12-29 08:21:03', 1),
+(29, 10, 13, 20000, 1, 'Transfer Bank', '2024-12-29 09:04:48', 1),
+(30, 13, 12, 5000000, 1, 'Transfer Bank', '2024-12-29 09:21:58', 1),
+(31, 12, 14, 50000, 1, 'Transfer Bank', '2024-12-29 09:27:21', 1),
+(32, 12, 14, 50000, 1, 'Transfer Bank', '2024-12-29 10:01:29', 1);
 
 --
 -- Trigger `transaksi`
@@ -367,38 +414,9 @@ END
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `after_transaksi_insert` AFTER INSERT ON `transaksi` FOR EACH ROW BEGIN
-  -- Mengurangi stok produk sesuai dengan jumlah_beli
-  UPDATE produk
-  SET stok = stok - NEW.jumlah_beli
-  WHERE id = NEW.produk_id;
-
-  -- Mengecek apakah stok menjadi negatif
-  IF (SELECT stok FROM produk WHERE id = NEW.produk_id) < 0 THEN
-    SIGNAL SQLSTATE '45000'
-    SET MESSAGE_TEXT = 'Stok produk tidak mencukupi!';
-  END IF;
-END
-$$
-DELIMITER ;
-DELIMITER $$
 CREATE TRIGGER `before_insert_transaksi` BEFORE INSERT ON `transaksi` FOR EACH ROW BEGIN
     -- Set status pembayaran default ke "Belum Dibayar" (ID 1)
     SET NEW.status_pembayaran_id = 1; -- Pastikan ID 1 adalah 'Belum Dibayar'
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `before_transaksi_insert` BEFORE INSERT ON `transaksi` FOR EACH ROW BEGIN
-  DECLARE harga_produk DECIMAL(10, 2);
-
-  -- Mendapatkan harga satuan produk dari tabel produk
-  SELECT harga INTO harga_produk
-  FROM produk
-  WHERE id = NEW.produk_id;
-
-  -- Menghitung total harga
-  SET NEW.total_harga = harga_produk * NEW.jumlah_beli;
 END
 $$
 DELIMITER ;
@@ -417,15 +435,6 @@ CREATE TABLE `transaksi_detail` (
   `harga_satuan` decimal(10,2) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `transaksi_detail`
---
-
-INSERT INTO `transaksi_detail` (`id`, `transaksi_id`, `produk_id`, `jumlah_beli`, `harga_satuan`, `subtotal`) VALUES
-(1, 1, 1, 2, 15000000.00, 30000000.00),
-(2, 1, 2, 5, 50000.00, 250000.00),
-(3, 1, 3, 3, 80000.00, 240000.00);
 
 --
 -- Trigger `transaksi_detail`
@@ -497,7 +506,7 @@ CREATE TABLE `user` (
   `foto` longtext DEFAULT NULL,
   `no_hp` varchar(15) DEFAULT NULL,
   `alamat` longtext DEFAULT NULL,
-  `role` enum('admin','penjual','customer','guest') NOT NULL DEFAULT 'guest',
+  `role` enum('admin','penjual','customer') DEFAULT 'customer',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -510,11 +519,14 @@ INSERT INTO `user` (`id`, `nama`, `email`, `password`, `foto`, `no_hp`, `alamat`
 (1, 'Admin', 'admin@example.com', 'password123', NULL, '081234567890', 'Jl. Admin', 'admin', NULL, NULL),
 (2, 'Penjual', 'penjual@example.com', 'password123', NULL, '081234567891', 'Jl. Penjual', 'penjual', NULL, NULL),
 (3, 'Customer', 'customer@example.com', 'password123', NULL, '081234567892', 'Jl. Customer', 'customer', NULL, NULL),
-(4, 'Guest', 'guest@example.com', 'password123', NULL, NULL, NULL, 'guest', NULL, NULL),
+(4, 'Guest', 'guest@example.com', 'password123', NULL, NULL, NULL, '', NULL, NULL),
 (5, 'John Doe', 'johndoe@example.com', 'password123', NULL, NULL, NULL, 'customer', NULL, NULL),
-(6, 'customer', 'customer@gmail.com', '$2y$12$GFlIa2CaC1haox.9N6JkSOi5L34ug/AnC85T1MuVrEZBKZo1DGM/K', NULL, NULL, NULL, 'admin', '2024-12-20 17:35:51', '2024-12-20 17:35:51'),
-(7, 'Muhammad Alfan Ridho', 'alfanridho507@gmail.com', '$2y$12$ngmWgV3D5N6MtMjVVdRM5OpGwE9130zZg.TFxPEhRzoyD44rLnD8G', NULL, NULL, NULL, 'guest', NULL, NULL),
-(10, 'Ridho', 'ridho@gmail.com', '$2y$12$GFcd.xRK8inPF0cu/12cEONwcwMgMjgP2oMACQZx9cYUinP/3PTe6', NULL, NULL, NULL, 'customer', NULL, NULL);
+(6, 'customerr', 'customer@gmail.com', '$2y$12$GFlIa2CaC1haox.9N6JkSOi5L34ug/AnC85T1MuVrEZBKZo1DGM/K', NULL, '0897729827282', 'Gg. H. Boan RT05/RW03 Palsigunung', 'admin', '2024-12-20 17:35:51', '2024-12-20 17:35:51'),
+(7, 'Muhammad Alfan Ridho', 'alfanridho507@gmail.com', '$2y$12$ngmWgV3D5N6MtMjVVdRM5OpGwE9130zZg.TFxPEhRzoyD44rLnD8G', NULL, NULL, NULL, '', NULL, NULL),
+(10, 'Ridho', 'ridho@gmail.com', '$2y$12$GFcd.xRK8inPF0cu/12cEONwcwMgMjgP2oMACQZx9cYUinP/3PTe6', NULL, '08977298272823', 'Gg. H. Boan RT05/RW03 Palsigunung', 'penjual', NULL, NULL),
+(11, 'Arman', 'arman@gmail.com', '$2y$12$5FuD8SMPC8ze0q/ujF2MEOmpP5Kh7FxQ4WeDTA6nwZVKmudz3tjye', NULL, NULL, NULL, 'customer', NULL, NULL),
+(12, 'luffy', 'luffy@gmail.com', '$2y$12$fBPoWo5k7rRUss/eh9vKuO59Js8ZZ.oufb6UhQSXc.SPo1OTYqxWK', NULL, '08977298272823', 'Gg. H. Boan RT05/RW03 Palsigunung', 'penjual', NULL, NULL),
+(13, 'zoro', 'zoro@gmail.com', '$2y$12$MFc9bsx4y4O0KDBO7NkJiOogVMlDVU1XntPm8agjcvRVdXjSjExGO', NULL, '0897729827282', 'Gg. H. Boan RT05/RW03 Palsigunung', 'penjual', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -608,7 +620,8 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `kategori_produk_id` (`kategori_produk_id`);
+  ADD KEY `kategori_produk_id` (`kategori_produk_id`),
+  ADD KEY `fk_penjual` (`penjual_id`);
 
 --
 -- Indeks untuk tabel `sessions`
@@ -663,7 +676,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -693,13 +706,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_pembayaran`
@@ -711,7 +724,7 @@ ALTER TABLE `status_pembayaran`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaksi_detail`
@@ -723,7 +736,7 @@ ALTER TABLE `transaksi_detail`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
@@ -746,6 +759,7 @@ ALTER TABLE `cart`
 -- Ketidakleluasaan untuk tabel `produk`
 --
 ALTER TABLE `produk`
+  ADD CONSTRAINT `fk_penjual` FOREIGN KEY (`penjual_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`kategori_produk_id`) REFERENCES `kategori_produk` (`id`);
 
 --

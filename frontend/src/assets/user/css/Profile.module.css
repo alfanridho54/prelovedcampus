@@ -1,0 +1,93 @@
+main {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  margin-top: 100px;
+  padding: 0;
+  
+}
+.profileContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.profileHeader {
+  margin-bottom: 20px;
+}
+.profileHeader h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.profileHeader p {
+  margin: 30px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+.formGroup {
+  margin-bottom: 15px;
+}
+.formGroup label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.formGroup input[type="text"],
+.formGroup input[type="email"],
+.formGroup input[type="tel"],
+.formGroup input[type="date"],
+.formGroup input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.formGroup .radioGroup {
+  display: flex;
+  gap: 15px;
+}
+.formGroup .radioGroup label {
+  font-weight: normal;
+}
+.profileImage {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.profileImage img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.profileImage input[type="file"] {
+  display: none;
+}
+.uploadBtn {
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #555;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btnSave {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color:  #8B9257;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btnSave:hover {
+  background-color: #4F5725;
+}

@@ -45,7 +45,7 @@ const Category = ({ onCategorySelect }) => {
               className={styles.featureItem}
               onClick={() => onCategorySelect(0)} // Passing 0 untuk kategori "All"
             >
-              <i className={`fas fa-tag ${styles.icon}`}></i>
+              
               <p className={styles.featureText}>All</p>
             </div>
             {/* Daftar kategori */}
@@ -55,7 +55,7 @@ const Category = ({ onCategorySelect }) => {
                 className={styles.featureItem}
                 onClick={() => onCategorySelect(item.id)}
               >
-                <i className={`fas fa-tag ${styles.icon}`}></i>
+                
                 <p className={styles.featureText}>{item.kategori}</p>
               </div>
             ))}

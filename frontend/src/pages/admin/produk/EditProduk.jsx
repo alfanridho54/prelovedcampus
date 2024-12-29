@@ -53,29 +53,42 @@ function EditProduk() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    const formData = new FormData();
+    formData.append("nama", nama);
+    formData.append("harga", harga);
+    formData.append("stok", stok);
+    formData.append("deskripsi", deskripsi);
+    formData.append("kategori_produk_id", kategori);
+  
+    if (lokasi_gambar && lokasi_gambar instanceof File) {
+      formData.append("lokasi_gambar", lokasi_gambar);
+    }
+  
+    // Debug: Log FormData
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+  
     try {
-      await axios.put(
-        `http://127.0.0.1:8000/api/produk/update/${id}`,
-        {
-          nama,
-          harga,
-          stok,
-          deskripsi,
-          kategori_produk_id: kategori,
-          lokasi_gambar,
+      const response = await axios.put(`http://127.0.0.1:8000/api/produk/update/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      alert("Produk berhasil diupdate!");
+      });
+  
+      alert("Produk berhasil diperbarui!");
       navigate("/produk");
     } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
       alert("Gagal mengupdate produk");
     }
   };
+  
+  
+  
+  
 
   return (
     <div className="container">
@@ -121,14 +134,16 @@ function EditProduk() {
           ></textarea>
         </div>
         <div className="mb-3">
-          <label>Lokasi Gambar</label>
+          <label>Gambar Produk</label>
           <input
-            type="text"
+            type="file"
             className="form-control"
-            value={lokasi_gambar}
-            onChange={(e) => setLokasiGambar(e.target.value)}
-            required
+            onChange={(e) => setLokasiGambar(e.target.files[0])}
           />
+          {/* Menampilkan gambar yang ada jika tidak ada gambar baru */}
+          {lokasi_gambar && !(lokasi_gambar instanceof File) && (
+            <img src={lokasi_gambar} alt="Gambar Produk" width="100" />
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="kategori" className="form-label">
@@ -158,4 +173,3 @@ function EditProduk() {
 }
 
 export default EditProduk;
-

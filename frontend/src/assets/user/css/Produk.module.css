@@ -1,116 +1,115 @@
 /* Container utama produk */
 .container {
-       max-width: 1280px;
-       margin: 0 auto;
-       padding: 1rem;
-     }
-     
-     /* Header produk */
-     .header {
-       display: flex;
-       align-items: center;
-       margin-bottom: 1rem;
-     }
-     
-     .header .dot {
-       width: 1rem;
-       height: 1rem;
-       background-color: #4F5725; /* Warna hijau tua */
-       border-radius: 50%;
-       margin-right: 0.5rem;
-     }
-     
-     .headerTitle {
-       font-size: 1.25rem;
-       font-weight: 600;
-       color: #4F5725;
-     }
-     
-     .mainTitle {
-       font-size: 2rem;
-       font-weight: 700;
-       margin-bottom: 2rem;
-       color: #000000; /* Warna abu gelap */
-     }
-     
-     /* Grid layout */
-     .grid {
-       display: grid;
-       grid-template-columns: repeat(1, 1fr);
-       gap: 1.5rem;
-     }
-     
-     @media (min-width: 640px) {
-       .grid {
-         grid-template-columns: repeat(2, 1fr);
-       }
-     }
-     
-     @media (min-width: 768px) {
-       .grid {
-         grid-template-columns: repeat(3, 1fr);
-       }
-     }
-     
-     @media (min-width: 1024px) {
-       .grid {
-         grid-template-columns: repeat(4, 1fr);
-       }
-     }
-     
-     /* Card produk */
-     .card {
-       background-color: #fff;
-       border-radius: 0.5rem;
-       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-       overflow: hidden;
-       padding: 1rem;
-       transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-     }
-     
-     .card:hover {
-       transform: translateY(-5px);
-       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-     }
-     
-     .card img {
-       width: 100%;
-       height: 12rem;
-       object-fit: cover;
-       margin-bottom: 0.5rem;
-     }
-     
-     .card h3 {
-       font-size: 1rem;
-       font-weight: 600;
-       margin-bottom: 0.25rem;
-       color: #333;
-     }
-     
-     .card p {
-       color: #e53e3e; /* Warna merah */
-       font-weight: 600;
-     }
-     
-     /* Tombol "View All Product" */
-     .buttonContainer {
-       display: flex;
-       justify-content: center;
-       margin-top: 2rem;
-     }
-     
-     .button {
-       background-color: #4F5725;
-       color: #fff;
-       padding: 0.75rem 1.5rem;
-       border-radius: 0.9rem;
-       font-weight: 600;
-       border: none;
-       cursor: pointer;
-       transition: background-color 0.3s ease-in-out;
-     }
-     
-     .button:hover {
-       background-color: #3e4620;
-     }
-     
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header produk */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header .dot {
+  width: 1rem;
+  height: 1rem;
+  background-color: #4F5725; /* Warna hijau tua */
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.headerTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4F5725;
+}
+
+.mainTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #000000; /* Warna abu gelap */
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Card produk */
+.card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 1rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.card p {
+  color: #e53e3e; /* Warna merah */
+  font-weight: 600;
+}
+
+/* Tombol "View All Product" */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.button {
+  background-color: #4F5725;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #3e4620;
+}

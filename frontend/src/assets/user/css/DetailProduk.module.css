@@ -1,0 +1,119 @@
+.cardContainer {
+    width: 100%;
+    max-width: 900px;
+   margin: 0 auto;
+   margin-top: 100px;
+   margin-bottom: 100px;
+  }
+  
+  .breadcrumb {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .cardImage {
+    flex: 1;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cardImage img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .cardContent {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .cardTitle {
+    font-size: 22px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .cardPrice {
+    font-size: 20px;
+    color: #000000;
+    margin: 10px 0;
+  }
+  
+  .cardDescription {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 15px 0;
+  }
+  
+  .quantity label {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .quantity input {
+    width: 50px;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  
+  .btnBuy {
+    background-color:  #8B9257;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btnBuy:hover {
+    background-color: #4F5725;
+  }
+  
+  .cardIcons {
+    
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .cardIcons .icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .cardIcons .icon:hover {
+    color: #333;
+  }
+  
+  .cardFeatures {
+    
+    justify-content: space-between;
+  }
+  
+  .featureItem {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    align-items: center;
+  }

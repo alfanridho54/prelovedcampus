@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';  // Menggunakan useNavigat
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
 
   const handleLogout = () => {
     // Menghapus token dari localStorage dan redirect ke halaman login
@@ -44,12 +45,14 @@ const Sidebar = () => {
           <span>Transaksi</span>
         </Link>
       </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/kategori">
-          <i className="fas fa-tags"></i>
-          <span>Kategori</span>
-        </Link>
-      </li>
+      {role === "admin" && (
+        <li className="nav-item">
+          <Link className="nav-link" to="/kategori">
+            <i className="fas fa-tags"></i>
+            <span>Kategori</span>
+          </Link>
+        </li>
+      )}
 
       {/* Tombol Logout */}
       <li className="nav-item">
@@ -64,3 +67,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+

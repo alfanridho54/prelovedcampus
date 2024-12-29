@@ -1,15 +1,35 @@
 import styles from "../../assets/user/css/Home.module.css";
 import banner from "../../assets/user/img/banner.png";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 function Home() {
+  const [kategori, setKategori] = useState([]);
+
+  useEffect(() => {
+    const fetchKategori = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/kategori-produk");
+        if (response.data.success) {
+          setKategori(response.data.data);
+        } else {
+          console.error("Gagal memuat data kategori");
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error.message);
+      }
+    };
+
+    fetchKategori();
+  }, []);
+
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
         <ul>
-          <li>Menswear</li>
-          <li>Womenswear</li>
-          <li>Electronics</li>
-          <li>Furniture</li>
-          <li>Books & Stationery</li>
+          {kategori.map((item) => (
+            <li key={item.id}>{item.kategori}</li>
+          ))}
         </ul>
       </aside>
 
@@ -38,6 +58,4 @@ function Home() {
 }
 
 export default Home;
-
-
 
